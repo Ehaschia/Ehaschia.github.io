@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang>
+<html class="theme-next gemini use-motion" lang>
 <head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -93,7 +93,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -301,14 +301,14 @@
         
           
             <p>This work comes from <a href="  http://people.csail.mit.edu/tommi/papers.html" rel="noopener" target="_blank">Tommi Jaakkola</a>. In vision, style transfer is a mature work. But in language, there not so many attention paid on this. Many work learning style transfer from parallel data, but actually there is not so many parallel data. So this paper is focus on learning a style transfer model from non-parallel text.</p>
-<h2 id="Formulation"><a href="#Formulation" class="headerlink" title="Formulation"></a>Formulation</h2><p>First, this paper assume a sentence generate by the following process:</p>
+<h2 id="Formulation"><a href="#Formulation" class="headerlink" title="Formulation"></a>Formulation</h2><p>First, this paper assumes a sentence generate by the following process:</p>
 <ol>
-<li>a latent style variable $\textbf{y}$ is generated from some distribution $p(\textbf{y})$;</li>
-<li>a latent content variable $\textbf{z}$ is generated from some distribution $p(\textbf{z})$;</li>
-<li>a datapoint $\textbf{x}$ is generated from conditional distribution $p(\textbf{x|y, z})$.</li>
+<li>A latent style variable $\textbf{y}$ is generated from some distribution $p(\textbf{y})$;</li>
+<li>A latent content variable $\textbf{z}$ is generated from some distribution $p(\textbf{z})$;</li>
+<li>A data point $\textbf{x}$ is generated from conditional distribution $p(\textbf{x|y, z})$.</li>
 </ol>
-<p>So the work focus on that: we know dataset $p(\textbf{x}_1|\textbf{y}_1)$ and $p(\textbf{x}_2|\textbf{y}_2)$ where $\textbf{y}_1$ and $\textbf{y}_2$ is unknown. and we want to learn the style transfer functions between them, namely  $p(\textbf{x}_1|\textbf{x}_2 ; \textbf{y}_1, \textbf{y}_2)$ and $p(\textbf{x}_2|\textbf{x}_1 ; \textbf{y}_1, \textbf{y}_2)$.</p>
-<p>Then the paper proof that: If we see style $\textbf{y} = (\textbf{A}, \textbf{b})$ is an affine transformation, i.e. $\textbf{x} = \textbf{Ay} + \textbf{b} + \epsilon$ where $\epsilon$ is noise, the distribution $\textbf{z}$ cannot be simple, it should be a complex distribution like Gaussian Distribution with more than two components. Only that can recover the transfer give their respective marginals.</p>
+<p>So this work focus on that: we know dataset $p(\textbf{x}_1|\textbf{y}_1)$ and $p(\textbf{x}_2|\textbf{y}_2)$ where $\textbf{y}_1$ and $\textbf{y}_2$ is unknown. And we want to learn the style transfer functions between them, namely  $p(\textbf{x}_1|\textbf{x}_2 ; \textbf{y}_1, \textbf{y}_2)$ and $p(\textbf{x}_2|\textbf{x}_1 ; \textbf{y}_1, \textbf{y}_2)$.</p>
+<p>Then the paper proof that: If we see style $\textbf{y} = (\textbf{A}, \textbf{b})$ as an affine transformation, i.e. $\textbf{x} = \textbf{Ay} + \textbf{b} + \epsilon$ where $\epsilon$ is noise, the distribution $\textbf{z}$ cannot be simple, it should be a complex distribution like Gaussian Distribution with more than two components. Only that can recover the transfer give their respective marginals.</p>
 <p>Last, example word substitution suggest that $\textbf{z}$ as the latent content variable should carry most complexity of data $\textbf{x}$. while $\textbf{y}$ as the latent style variable should have relatively simple effects.</p>
 <h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>Through the way to calculate $p(\textbf{x}_1| \textbf{x}_2; \textbf{y}_1, \textbf{y}_2)$:</p>
 <img src="/2017/09/29/paper170929/p1.jpg">
@@ -320,7 +320,8 @@
 <img src="/2017/09/29/paper170929/p3.jpg">
 <p>where :</p>
 <img src="/2017/09/29/paper170929/p4.jpg">
-<h3 id="Cross-aligned-auto-encoder"><a href="#Cross-aligned-auto-encoder" class="headerlink" title="Cross-aligned auto-encoder"></a>Cross-aligned auto-encoder</h3><p>Under the generative assumption, $p(x<em>2|y_2) = \int</em>{x_1}{x_1 p(x_2|x_1;y_1,y_2)p(x_1|y_1)}dx_1$, thus $x_2$<br>(sampled from the left-hand side) should exhibit the same distribution as transferred $x_1$ (sampled from the right-hand side), and vice versa. So add a similar constrain.</p>
+<h3 id="Cross-aligned-auto-encoder"><a href="#Cross-aligned-auto-encoder" class="headerlink" title="Cross-aligned auto-encoder"></a>Cross-aligned auto-encoder</h3><p>Under the generative assumption, we can get $p(x_2 | y_2 )$ as follow:</p>
+<script type="math/tex; mode=display">p(x_2|y_2) = \int_{ x_1 } { x_1 p(x_2|x_1;y_1,y_2) p(x_1|y_1) } dx_1 ,</script><p>thus $x_2$ (sampled from the left-hand side) should exhibit the same distribution as transferred $x_1$ (sampled from the right-hand side), and vice versa. So add a similar constrain.</p>
 <h2 id="Learning"><a href="#Learning" class="headerlink" title="Learning"></a>Learning</h2><ol>
 <li>Instead of training over the discrete sampless generated by $G$, it use softmax distribution.</li>
 <li>use Professor-Forcing.(Clear I’m not familiar with this method, I will write this part after I know this algorithm)</li>
@@ -889,7 +890,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -988,6 +989,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
 

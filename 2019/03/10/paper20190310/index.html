@@ -79,22 +79,21 @@
 
 
 
-<meta name="description" content="This work comes from Tommi Jaakkola. In vision, style transfer is a mature work. But in language, there not so many attention paid on this. Many work learning style transfer from parallel data, but ac">
+<meta name="description" content="It is a interesting work that it learns text template during generation sentence from knowledge. Template is really useful since sentences are be written more based on templates than on words one by o">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Style Transfer from Non-Parallel Text by Cross-Alignment">
-<meta property="og:url" content="http://yoursite.com/2017/09/29/paper170929/index.html">
+<meta property="og:title" content="Learning Neural Templates for Text Generation">
+<meta property="og:url" content="http://yoursite.com/2019/03/10/paper20190310/index.html">
 <meta property="og:site_name" content="Ehaschia&#39;s Blog">
-<meta property="og:description" content="This work comes from Tommi Jaakkola. In vision, style transfer is a mature work. But in language, there not so many attention paid on this. Many work learning style transfer from parallel data, but ac">
+<meta property="og:description" content="It is a interesting work that it learns text template during generation sentence from knowledge. Template is really useful since sentences are be written more based on templates than on words one by o">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2017/09/29/paper170929/p1.jpg">
-<meta property="og:image" content="http://yoursite.com/2017/09/29/paper170929/p2.jpg">
-<meta property="og:image" content="http://yoursite.com/2017/09/29/paper170929/p3.jpg">
-<meta property="og:image" content="http://yoursite.com/2017/09/29/paper170929/p4.jpg">
-<meta property="og:updated_time" content="2019-03-10T02:02:14.739Z">
+<meta property="og:image" content="http://yoursite.com/2019/03/10/paper20190310/hsmm.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/10/paper20190310/emiss.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/10/paper20190310/loss.jpg">
+<meta property="og:updated_time" content="2019-03-10T15:10:29.542Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Style Transfer from Non-Parallel Text by Cross-Alignment">
-<meta name="twitter:description" content="This work comes from Tommi Jaakkola. In vision, style transfer is a mature work. But in language, there not so many attention paid on this. Many work learning style transfer from parallel data, but ac">
-<meta name="twitter:image" content="http://yoursite.com/2017/09/29/paper170929/p1.jpg">
+<meta name="twitter:title" content="Learning Neural Templates for Text Generation">
+<meta name="twitter:description" content="It is a interesting work that it learns text template during generation sentence from knowledge. Template is really useful since sentences are be written more based on templates than on words one by o">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/10/paper20190310/hsmm.jpg">
 
 
 
@@ -124,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/09/29/paper170929/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/10/paper20190310/">
 
 
 
 
 
-  <title>Style Transfer from Non-Parallel Text by Cross-Alignment | Ehaschia's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Learning Neural Templates for Text Generation | Ehaschia's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -237,7 +236,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/29/paper170929/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/10/paper20190310/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ehaschia Reus">
@@ -254,7 +253,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Style Transfer from Non-Parallel Text by Cross-Alignment</h1>
+          <h1 class="post-title" itemprop="name headline">Learning Neural Templates for Text Generation</h1>
         
 
         <div class="post-meta">
@@ -266,8 +265,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-29T13:59:06+09:00">
-                2017-09-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-10T21:25:24+09:00">
+                2019-03-10
               </time>
             
 
@@ -304,32 +303,39 @@
       
 
       
-        <p>This work comes from <a href="  http://people.csail.mit.edu/tommi/papers.html" rel="noopener" target="_blank">Tommi Jaakkola</a>. In vision, style transfer is a mature work. But in language, there not so many attention paid on this. Many work learning style transfer from parallel data, but actually there is not so many parallel data. So this paper is focus on learning a style transfer model from non-parallel text.</p>
-<h2 id="Formulation"><a href="#Formulation" class="headerlink" title="Formulation"></a>Formulation</h2><p>First, this paper assumes a sentence generate by the following process:</p>
-<ol>
-<li>A latent style variable $\textbf{y}$ is generated from some distribution $p(\textbf{y})$;</li>
-<li>A latent content variable $\textbf{z}$ is generated from some distribution $p(\textbf{z})$;</li>
-<li>A data point $\textbf{x}$ is generated from conditional distribution $p(\textbf{x|y, z})$.</li>
-</ol>
-<p>So this work focus on that: we know dataset $p(\textbf{x}_1|\textbf{y}_1)$ and $p(\textbf{x}_2|\textbf{y}_2)$ where $\textbf{y}_1$ and $\textbf{y}_2$ is unknown. And we want to learn the style transfer functions between them, namely  $p(\textbf{x}_1|\textbf{x}_2 ; \textbf{y}_1, \textbf{y}_2)$ and $p(\textbf{x}_2|\textbf{x}_1 ; \textbf{y}_1, \textbf{y}_2)$.</p>
-<p>Then the paper proof that: If we see style $\textbf{y} = (\textbf{A}, \textbf{b})$ as an affine transformation, i.e. $\textbf{x} = \textbf{Ay} + \textbf{b} + \epsilon$ where $\epsilon$ is noise, the distribution $\textbf{z}$ cannot be simple, it should be a complex distribution like Gaussian Distribution with more than two components. Only that can recover the transfer give their respective marginals.</p>
-<p>Last, example word substitution suggest that $\textbf{z}$ as the latent content variable should carry most complexity of data $\textbf{x}$. while $\textbf{y}$ as the latent style variable should have relatively simple effects.</p>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>Through the way to calculate $p(\textbf{x}_1| \textbf{x}_2; \textbf{y}_1, \textbf{y}_2)$:</p>
-<img src="/2017/09/29/paper170929/p1.jpg">
-<p>So we can learning with a <strong>autoencoder</strong>.</p>
-<p>If use a variational auto encoder, we can get the reconstruction loss is :</p>
-<img src="/2017/09/29/paper170929/p2.jpg">
-<p>There $E : X \times Y \rightarrow Z$ be a deterministic encoder that infers the mas of content variable $\textbf{z}$ for  a given sentence $\textbf{x}$ from a given style style $\textbf{y}$. let $G : Y \times Z \rightarrow X$ be a probabilistic generator that generates a sentence $\textbf{x}$ from a given style $\textbf{y}$ and centent $\textbf{z}$.</p>
-<h3 id="Aligned-auto-encoder"><a href="#Aligned-auto-encoder" class="headerlink" title="Aligned auto-encoder"></a>Aligned auto-encoder</h3><p>This method is VAE add a constrain : both $\textbf{x}_1$ and $\textbf{x}_2$ are generated using the same latent distribution $p(\textbf{z})$. So the objective function add a Lagrangian relaxation term:</p>
-<img src="/2017/09/29/paper170929/p3.jpg">
-<p>where :</p>
-<img src="/2017/09/29/paper170929/p4.jpg">
-<h3 id="Cross-aligned-auto-encoder"><a href="#Cross-aligned-auto-encoder" class="headerlink" title="Cross-aligned auto-encoder"></a>Cross-aligned auto-encoder</h3><p>Under the generative assumption, we can get $p(x_2 | y_2 )$ as follow:</p>
-<script type="math/tex; mode=display">p(x_2|y_2) = \int_{ x_1 } { x_1 p(x_2|x_1;y_1,y_2) p(x_1|y_1) } dx_1 ,</script><p>thus $x_2$ (sampled from the left-hand side) should exhibit the same distribution as transferred $x_1$ (sampled from the right-hand side), and vice versa. So add a similar constrain.</p>
-<h2 id="Learning"><a href="#Learning" class="headerlink" title="Learning"></a>Learning</h2><ol>
-<li>Instead of training over the discrete sampless generated by $G$, it use softmax distribution.</li>
-<li>use Professor-Forcing.(Clear I’m not familiar with this method, I will write this part after I know this algorithm)</li>
-</ol>
+        <p>It is a interesting work that it learns text template during generation sentence from knowledge. Template is really useful since sentences are be written more based on templates than on words one by one. From another point of view, grammar can be seen as a summary of the template. We can learn how to do grammar induction from the template learning process.</p>
+<h2 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h2><p>Generation a sentence based on an instance in knowledge graph.</p>
+<p>There have been two mainly method on sentence generation. </p>
+<p>1.Generating sentence based on template like: </p>
+<center>"A *restaurant* is located at *location*." </center>
+
+<p>2.Generating sentence based on a neural network based encoder decoder framework.</p>
+<p>This work combine these two method by a neural network parameterized Hidden Semi-Markov Model (HSMM).</p>
+<h2 id="Hidden-Semi-Markov-Model"><a href="#Hidden-Semi-Markov-Model" class="headerlink" title="Hidden Semi-Markov Model"></a>Hidden Semi-Markov Model</h2><p>HSMM models latent segmentations in an output sequence. Informally, an HSMM is much like an HMM, except emissions may last multiple time-steps, and multi-step emissions need not be independent of each other conditioned on the state. A sketch map is showed as follow:</p>
+ <center><img src="/2019/03/10/paper20190310/hsmm.jpg" title="HSMM"></center>
+
+<p>here $(x, y_{1:n})$ is instance of knowledge graph and its corresponding sentence and  $z_i$ is different latent state.</p>
+<p>Objective function is:</p>
+<script type="math/tex; mode=display">p(y, z | x; \theta) = \prod_{i=1}^{n-1} p_t(z_{i+1} | z_i, x) \times \prod_{i=1}^{n} p_e(y_i | z_i, x)</script><h2 id="Parameterized"><a href="#Parameterized" class="headerlink" title="Parameterized"></a>Parameterized</h2><h3 id="Encoder"><a href="#Encoder" class="headerlink" title="Encoder"></a>Encoder</h3><p>Encoder is traditional neural network.</p>
+<h3 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h3><p><strong>Transition Distribution</strong></p>
+
+<p><strong>Emission Distribution</strong></p>
+<img src="/2019/03/10/paper20190310/emiss.jpg" title="Emission Distribution">
+<h1 id="Learning"><a href="#Learning" class="headerlink" title="Learning"></a>Learning</h1><p>This model marginalize over these variables to maximize the log marginal-likelihood of the observed tokens y given x.</p>
+<img src="/2019/03/10/paper20190310/loss.jpg" title="loss function">
+<h1 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h1><p>There are a range of similar work such as Chong Wang’s work:</p>
+<ul>
+<li><p><a href="https://arxiv.org/abs/1702.07463" target="_blank" rel="noopener">Sequence Modeling via Segmentations</a>, ICML 2017</p>
+</li>
+<li><p><a href="https://arxiv.org/abs/1706.05565" target="_blank" rel="noopener">Towards Neural Phrase-based Machine Translation</a> (<a href="https://github.com/posenhuang/NPMT" target="_blank" rel="noopener">code</a>), ICLR 2018</p>
+</li>
+<li><p><a href="https://arxiv.org/abs/1804.07855" target="_blank" rel="noopener">Subgoal Discovery for Hierarchical Dialogue Policy Learning</a>, EMNLP 2018</p>
+</li>
+<li><p><a href="https://arxiv.org/abs/1811.02172" target="_blank" rel="noopener">Neural Phrase-to-Phrase Machine Translation</a> on Arxiv</p>
+</li>
+</ul>
+<p>And Zhouhan Lin’s work: <a href="http://aclweb.org/anthology/W18-3020" target="_blank" rel="noopener">Recurrent-Recursive Network</a></p>
+<p>It will be interesting if we can unsupervised learning template. For example, can we design a language model to learn templates such as previous work that unsupervised learns Chinese word segmentation. Or can we change the HSMM for learning discontinuous template like: “It ls … that ..”.</p>
 
       
     </div>
@@ -354,8 +360,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/17/paper170917/" rel="next" title="Reasoning with Heterogeneous Knowledge for Commonsense Machine Comprehension">
-                <i class="fa fa-chevron-left"></i> Reasoning with Heterogeneous Knowledge for Commonsense Machine Comprehension
+              <a href="/2017/09/29/paper170929/" rel="next" title="Style Transfer from Non-Parallel Text by Cross-Alignment">
+                <i class="fa fa-chevron-left"></i> Style Transfer from Non-Parallel Text by Cross-Alignment
               </a>
             
           </div>
@@ -363,10 +369,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/10/paper20190310/" rel="prev" title="Learning Neural Templates for Text Generation">
-                Learning Neural Templates for Text Generation <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -480,7 +482,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Formulation"><span class="nav-number">1.</span> <span class="nav-text">Formulation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Method"><span class="nav-number">2.</span> <span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Aligned-auto-encoder"><span class="nav-number">2.1.</span> <span class="nav-text">Aligned auto-encoder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cross-aligned-auto-encoder"><span class="nav-number">2.2.</span> <span class="nav-text">Cross-aligned auto-encoder</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learning"><span class="nav-number">3.</span> <span class="nav-text">Learning</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Task"><span class="nav-number">1.</span> <span class="nav-text">Task</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hidden-Semi-Markov-Model"><span class="nav-number">2.</span> <span class="nav-text">Hidden Semi-Markov Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Parameterized"><span class="nav-number">3.</span> <span class="nav-text">Parameterized</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Encoder"><span class="nav-number">3.1.</span> <span class="nav-text">Encoder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Decoder"><span class="nav-number">3.2.</span> <span class="nav-text">Decoder</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#Learning"><span class="nav-number"></span> <span class="nav-text">Learning</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Discussion"><span class="nav-number"></span> <span class="nav-text">Discussion</span></a></li></div>
             
 
           </div>
@@ -634,7 +636,24 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src>
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
@@ -687,43 +706,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src>
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
   
 
 

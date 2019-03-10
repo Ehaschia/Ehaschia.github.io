@@ -86,10 +86,19 @@
 <meta property="og:site_name" content="Ehaschia&#39;s Blog">
 <meta property="og:description" content="BriefThis work focus on commonsense knowledge. As described in this paper, they propose a new commonsense approach  to address two problem:  How to mine and represent different kinds of implicit knowl">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2017/09/17/paper170917/inference.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/09/17/paper170917/prob.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/09/17/paper170917/p.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/09/17/paper170917/g.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/09/17/paper170917/l.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/09/17/paper170917/performance.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/09/17/paper170917/singal.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/09/17/paper170917/double.jpg">
 <meta property="og:updated_time" content="2018-02-26T16:00:28.261Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Reasoning with Heterogeneous Knowledge for Commonsense Machine Comprehension">
 <meta name="twitter:description" content="BriefThis work focus on commonsense knowledge. As described in this paper, they propose a new commonsense approach  to address two problem:  How to mine and represent different kinds of implicit knowl">
+<meta name="twitter:image" content="http://yoursite.com/2017/09/17/paper170917/inference.jpg">
 
 
 
@@ -429,26 +438,26 @@
 <p>Premise document $D = { d_1, d_2, …, d_m}$, m elements.</p>
 <p>Hypothesis $H = {h_1, H_2, …, H_n }$, n elements</p>
 <p>Valid inference set $R$ from $D$ to $H$, all element in $H$ can be inferred from one element in $D$ using one and only one rule in $R$. So all elements in $H$ should be covered by consequents of inference rules in $R$, as well as all antecedents of inference rules in $R$ should come from $D$. So the size of $R$ and the size of $H$ are equal. $R = { r_1, r_2, … r_n}$</p>
-
+<img src="/2017/09/17/paper170917/inference.jpg" title="example, (c) is wrong">
 <h3 id="Inference-from-Premise-Document-to-Hypothesis"><a href="#Inference-from-Premise-Document-to-Hypothesis" class="headerlink" title="Inference from Premise Document to Hypothesis"></a>Inference from Premise Document to Hypothesis</h3><p>The cost of an inference $R$ as the cost sum of all inference rules in $R$.</p>
 <h3 id="Modeling-Inference-Probability-using-Attention-Mechanism"><a href="#Modeling-Inference-Probability-using-Attention-Mechanism" class="headerlink" title="Modeling Inference Probability using Attention Mechanism"></a>Modeling Inference Probability using Attention Mechanism</h3><p>The “cost” measures the “correctness” of an inference rule. A rule with low cost is more likely to be “reasonable”, and a rule with high cost is more likely to be a contradiction with commonsense. On the other hand, the “possibility” should measure how likely a rule will be applied in a given context, which does not depend on the “cost” but on the nature of the rule and the given context. </p>
-
+<img src="/2017/09/17/paper170917/prob.jpg">
 <p>and the $P$ in the last line is the defined as:</p>
-
+<img src="/2017/09/17/paper170917/p.jpg">
 <p>$g$ is : (detail see paper)</p>
-
+<img src="/2017/09/17/paper170917/g.jpg">
 <h3 id="Reasoning-Distance-Between-Premise-Document-and-Hypothesis"><a href="#Reasoning-Distance-Between-Premise-Document-and-Hypothesis" class="headerlink" title="Reasoning Distance Between Premise Document and Hypothesis"></a>Reasoning Distance Between Premise Document and Hypothesis</h3><p>Given a premise document, this section shows how to measure whether a hypothesis is coherent using above inference model. $L(D →H)$ as the expected cost sum of all valid inferences:</p>
-
+<img src="/2017/09/17/paper170917/l.jpg">
 <h3 id="Model-Learning"><a href="#Model-Learning" class="headerlink" title="Model Learning"></a>Model Learning</h3><p>Define the posterior probability :</p>
 <p>learning the log likelihood of choosing the right hypothesis $H^+$ for $D$:</p>
 <center>$L(\theta) = -log \prod P(H^+ | D)$ </center>
 
 <h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p>Compare with baseline:</p>
-
+<img src="/2017/09/17/paper170917/performance.jpg">
 <p>Compare with only one source:</p>
-
+<img src="/2017/09/17/paper170917/singal.jpg">
 <p>Compare with drop out one source:</p>
-
+<img src="/2017/09/17/paper170917/double.jpg">
       
     </div>
     
@@ -561,7 +570,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

@@ -229,134 +229,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/08/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ehaschia Reus">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ehaschia's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/08/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-08T16:47:34+09:00">
-                2019-03-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/29/paper170929/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -439,15 +311,15 @@
 <p>Then the paper proof that: If we see style $\textbf{y} = (\textbf{A}, \textbf{b})$ is an affine transformation, i.e. $\textbf{x} = \textbf{Ay} + \textbf{b} + \epsilon$ where $\epsilon$ is noise, the distribution $\textbf{z}$ cannot be simple, it should be a complex distribution like Gaussian Distribution with more than two components. Only that can recover the transfer give their respective marginals.</p>
 <p>Last, example word substitution suggest that $\textbf{z}$ as the latent content variable should carry most complexity of data $\textbf{x}$. while $\textbf{y}$ as the latent style variable should have relatively simple effects.</p>
 <h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>Through the way to calculate $p(\textbf{x}_1| \textbf{x}_2; \textbf{y}_1, \textbf{y}_2)$:</p>
-
+<img src="/2017/09/29/paper170929/p1.jpg">
 <p>So we can learning with a <strong>autoencoder</strong>.</p>
 <p>If use a variational auto encoder, we can get the reconstruction loss is :</p>
-
+<img src="/2017/09/29/paper170929/p2.jpg">
 <p>There $E : X \times Y \rightarrow Z$ be a deterministic encoder that infers the mas of content variable $\textbf{z}$ for  a given sentence $\textbf{x}$ from a given style style $\textbf{y}$. let $G : Y \times Z \rightarrow X$ be a probabilistic generator that generates a sentence $\textbf{x}$ from a given style $\textbf{y}$ and centent $\textbf{z}$.</p>
 <h3 id="Aligned-auto-encoder"><a href="#Aligned-auto-encoder" class="headerlink" title="Aligned auto-encoder"></a>Aligned auto-encoder</h3><p>This method is VAE add a constrain : both $\textbf{x}_1$ and $\textbf{x}_2$ are generated using the same latent distribution $p(\textbf{z})$. So the objective function add a Lagrangian relaxation term:</p>
-
+<img src="/2017/09/29/paper170929/p3.jpg">
 <p>where :</p>
-
+<img src="/2017/09/29/paper170929/p4.jpg">
 <h3 id="Cross-aligned-auto-encoder"><a href="#Cross-aligned-auto-encoder" class="headerlink" title="Cross-aligned auto-encoder"></a>Cross-aligned auto-encoder</h3><p>Under the generative assumption, $p(x<em>2|y_2) = \int</em>{x_1}{x_1 p(x_2|x_1;y_1,y_2)p(x_1|y_1)}dx_1$, thus $x_2$<br>(sampled from the left-hand side) should exhibit the same distribution as transferred $x_1$ (sampled from the right-hand side), and vice versa. So add a similar constrain.</p>
 <h2 id="Learning"><a href="#Learning" class="headerlink" title="Learning"></a>Learning</h2><ol>
 <li>Instead of training over the discrete sampless generated by $G$, it use softmax distribution.</li>
@@ -702,26 +574,26 @@
 <p>Premise document $D = { d_1, d_2, …, d_m}$, m elements.</p>
 <p>Hypothesis $H = {h_1, H_2, …, H_n }$, n elements</p>
 <p>Valid inference set $R$ from $D$ to $H$, all element in $H$ can be inferred from one element in $D$ using one and only one rule in $R$. So all elements in $H$ should be covered by consequents of inference rules in $R$, as well as all antecedents of inference rules in $R$ should come from $D$. So the size of $R$ and the size of $H$ are equal. $R = { r_1, r_2, … r_n}$</p>
-
+<img src="/2017/09/17/paper170917/inference.jpg" title="example, (c) is wrong">
 <h3 id="Inference-from-Premise-Document-to-Hypothesis"><a href="#Inference-from-Premise-Document-to-Hypothesis" class="headerlink" title="Inference from Premise Document to Hypothesis"></a>Inference from Premise Document to Hypothesis</h3><p>The cost of an inference $R$ as the cost sum of all inference rules in $R$.</p>
 <h3 id="Modeling-Inference-Probability-using-Attention-Mechanism"><a href="#Modeling-Inference-Probability-using-Attention-Mechanism" class="headerlink" title="Modeling Inference Probability using Attention Mechanism"></a>Modeling Inference Probability using Attention Mechanism</h3><p>The “cost” measures the “correctness” of an inference rule. A rule with low cost is more likely to be “reasonable”, and a rule with high cost is more likely to be a contradiction with commonsense. On the other hand, the “possibility” should measure how likely a rule will be applied in a given context, which does not depend on the “cost” but on the nature of the rule and the given context. </p>
-
+<img src="/2017/09/17/paper170917/prob.jpg">
 <p>and the $P$ in the last line is the defined as:</p>
-
+<img src="/2017/09/17/paper170917/p.jpg">
 <p>$g$ is : (detail see paper)</p>
-
+<img src="/2017/09/17/paper170917/g.jpg">
 <h3 id="Reasoning-Distance-Between-Premise-Document-and-Hypothesis"><a href="#Reasoning-Distance-Between-Premise-Document-and-Hypothesis" class="headerlink" title="Reasoning Distance Between Premise Document and Hypothesis"></a>Reasoning Distance Between Premise Document and Hypothesis</h3><p>Given a premise document, this section shows how to measure whether a hypothesis is coherent using above inference model. $L(D →H)$ as the expected cost sum of all valid inferences:</p>
-
+<img src="/2017/09/17/paper170917/l.jpg">
 <h3 id="Model-Learning"><a href="#Model-Learning" class="headerlink" title="Model Learning"></a>Model Learning</h3><p>Define the posterior probability :</p>
 <p>learning the log likelihood of choosing the right hypothesis $H^+$ for $D$:</p>
 <center>$L(\theta) = -log \prod P(H^+ | D)$ </center>
 
 <h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p>Compare with baseline:</p>
-
+<img src="/2017/09/17/paper170917/performance.jpg">
 <p>Compare with only one source:</p>
-
+<img src="/2017/09/17/paper170917/singal.jpg">
 <p>Compare with drop out one source:</p>
-
+<img src="/2017/09/17/paper170917/double.jpg">
           
         
       
@@ -847,7 +719,7 @@
 <li>REDUCE-L/R-X: pop the top constituents off the stack, combine them into a new constituent with label X, and push the new constituent onto the stack.</li>
 <li>UNARY-X: pop the top constituent off the stack, raise it to a new constituent with label X, and push the new constituent on to the stack.</li>
 <li><p>FINISH: pop the root node off the stack and ends parsing.</p>
-<center></center>
+<center><img src="/2017/09/02/paper170903/e1.jpg" title="bottom-up system"></center>
 
 </li>
 </ul>
@@ -855,7 +727,7 @@
 <li>SHIFT: pop the front word from the buffer, and push it onto the stack.</li>
 <li>NT-X: open a nonterminal with label X on the top of the stack.</li>
 <li><p>REDUCE: repeatedly pop completed subtrees of terminal symbols from the stack until an open nonterminal is encountered, and then this open NT is popped and used as the label of a new constituent that the popped subtrees as its children. This  new completed constituent is pushed onto the stack as a single composite item.</p>
-<center></center>
+<center><img src="/2017/09/02/paper170903/e2.jpg" title="top-down system"></center>
 
 </li>
 </ul>
@@ -865,13 +737,19 @@
 <li><strong>Pop</strong>: moves the stack pointer to the previous elements.</li>
 </ul>
 <p>With this two operations, the LSTM can be understood as a stack implemented so that contents are never overwritten, that is, <strong>push</strong> always adds a new entry at the end of the list that contains a back-pointer to the previous top, and <strong>pop</strong> only updates the stack pointer.</p>
-<center></center>
+<center><img src="/2017/09/02/paper170903/stack-lstm.jpg" title="a case of stack LSTM"></center>
 
 <p>The picture above is a case of how stack LSTM work. The left means the stack LSTM with a single element. After a <strong>pop</strong> operation it turns to the middle, and then the result of applying a <strong>push</strong> operation is right,The boxes in the lowest rows represent stack contents, which are the inputs to the LSTM, the upper rows are the outputs of the LSTM, and the middle rows are the memory cells (the <strong>$c_t$</strong>’s and <strong>$h_t$</strong>’s) and gates. Arrows represent function applications (usually affine transformations followed by a nonlinearity).</p>
-<h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><h2 id="In-order-System"><a href="#In-order-System" class="headerlink" title="In-order System"></a>In-order System</h2><center></center>
+<h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><h2 id="In-order-System"><a href="#In-order-System" class="headerlink" title="In-order System"></a>In-order System</h2><center><img src="/2017/09/02/paper170903/sentence.jpg" title="Syntactic trees of the sentence The little boy likes red tomatoes.."></center>
 
 <h3 id="Post-order-System"><a href="#Post-order-System" class="headerlink" title="Post-order System"></a>Post-order System</h3><p>The process of bottom-up parsing can be regarded as <em>post-order</em> traversal over a constituent tree. For example, given the sentence in image above, a bottom-up shift reduce parser takes the action sequence in table below.</p>
-<center></center>
+<center><img src="/2017/09/02/paper170903/bottom-top.jpg" title="Bottom-top System}</center> <p>The full order of recognition for the tree nodes is $3\rightarrow4\rightarrow5\rightarrow2\rightarrow7\rightarrow9\rightarrow10\rightarrow8\rightarrow6\rightarrow11\rightarrow1$.</p> <h3 id=Pre-order-System><a href=#Pre-order-System class=headerlink title=Pre-order System></a>Pre-order System</h3><p>The process of bottom-up parsing can be regarded as <em>pre-order</em> traversal over a constituent tree. For example, given the sentence in image above, a top-down shift reduce parser takes the action sequence in table below.</p> <center>{% asset_img top-down.jpg Top-down System}</center> <p>The full order of recognition for the tree nodes is $1\rightarrow2\rightarrow3\rightarrow4\rightarrow5\rightarrow6\rightarrow7\rightarrow8\rightarrow9\rightarrow10\rightarrow11$.</p> <h3 id=In-order-System-1><a href=#In-order-System-1 class=headerlink title=In-order System></a>In-order System</h3><p>Combine with the bottom-up and top-down system, the in-order system like that:</p> <center>{% asset_img in-order.jpg In-order System}</center> <p>The full order of recognition for the tree nodes is $3\rightarrow2\rightarrow4\rightarrow5\rightarrow1\rightarrow7\rightarrow6\rightarrow9\rightarrow8\rightarrow10\rightarrow11$.</p> <p>The set of transition actions are defined as:</p> <ul> <li>SHIFT: pop the front word from the buffer, and push it onto the stack.</li> <li>PJ-X: project a nonterminal with label X on the top of the stack.</li> <li>REDUCE: repeatedly pop completed subtrees or terminal symbols from the stack until an projected nonterminal is popped and used as the label of a new constituent, and furthermore, one more item on the top of stack is popped as the leftmost child of the new constituent and the popped as the leftmost child of the new constituent and the popped subtrees as its rest children. This new completed constituent is pushed onto the stack as a single composite item.</li> <li>FINISH: pop the root node off the stack and ends parsing.</li> </ul> <center>{% asset_img in-order-equation.jpg }</center> <h2 id=Neural-Parsing-Model><a href=#Neural-Parsing-Model class=headerlink title=Neural Parsing Model></a>Neural Parsing Model</h2><center>{% asset_img framework.jpg framework of the transition-based model}</center> <h3 id=Word-representation><a href=#Word-representation class=headerlink title=Word representation></a>Word representation</h3><p>This paper combing three different part of word embedding to represent the word:</p> <ul> <li>pretrained word embedding, ${\overline{e}}_{w_i}$</li>
+<li>randomly initialized embeddings, $e_{w_i}$</li>
+<li>randomly initialized part-of-speech embedding, $e_{p_i}$</li>
+</ul>
+<center>$x_i =f(W_{input}[e_{p_i}; \overline{e}_{w_i}; e_{w_i} + b_{input} ]) $</center>
+
+<h3 id=" alt="Stack-representation"></center>
           
         
       
@@ -952,7 +830,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

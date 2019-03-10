@@ -86,10 +86,16 @@
 <meta property="og:site_name" content="Ehaschia&#39;s Blog">
 <meta property="og:description" content="A Transition-based constituent parsing method and this method can be used to dependency parsing, BackgroundTransition-based constituent parsingTransition-based constituent parsing takes a left-to-righ">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2017/09/02/paper170903/e1.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/09/02/paper170903/e2.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/09/02/paper170903/stack-lstm.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/09/02/paper170903/sentence.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/09/02/paper170903/bottom-top.jpg">
 <meta property="og:updated_time" content="2018-02-26T16:00:34.678Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="In-Order Transition-based Constituent Parsing">
 <meta name="twitter:description" content="A Transition-based constituent parsing method and this method can be used to dependency parsing, BackgroundTransition-based constituent parsingTransition-based constituent parsing takes a left-to-righ">
+<meta name="twitter:image" content="http://yoursite.com/2017/09/02/paper170903/e1.jpg">
 
 
 
@@ -306,7 +312,7 @@
 <li>REDUCE-L/R-X: pop the top constituents off the stack, combine them into a new constituent with label X, and push the new constituent onto the stack.</li>
 <li>UNARY-X: pop the top constituent off the stack, raise it to a new constituent with label X, and push the new constituent on to the stack.</li>
 <li><p>FINISH: pop the root node off the stack and ends parsing.</p>
-<center></center>
+<center><img src="/2017/09/02/paper170903/e1.jpg" title="bottom-up system"></center>
 
 </li>
 </ul>
@@ -314,7 +320,7 @@
 <li>SHIFT: pop the front word from the buffer, and push it onto the stack.</li>
 <li>NT-X: open a nonterminal with label X on the top of the stack.</li>
 <li><p>REDUCE: repeatedly pop completed subtrees of terminal symbols from the stack until an open nonterminal is encountered, and then this open NT is popped and used as the label of a new constituent that the popped subtrees as its children. This  new completed constituent is pushed onto the stack as a single composite item.</p>
-<center></center>
+<center><img src="/2017/09/02/paper170903/e2.jpg" title="top-down system"></center>
 
 </li>
 </ul>
@@ -324,13 +330,19 @@
 <li><strong>Pop</strong>: moves the stack pointer to the previous elements.</li>
 </ul>
 <p>With this two operations, the LSTM can be understood as a stack implemented so that contents are never overwritten, that is, <strong>push</strong> always adds a new entry at the end of the list that contains a back-pointer to the previous top, and <strong>pop</strong> only updates the stack pointer.</p>
-<center></center>
+<center><img src="/2017/09/02/paper170903/stack-lstm.jpg" title="a case of stack LSTM"></center>
 
 <p>The picture above is a case of how stack LSTM work. The left means the stack LSTM with a single element. After a <strong>pop</strong> operation it turns to the middle, and then the result of applying a <strong>push</strong> operation is right,The boxes in the lowest rows represent stack contents, which are the inputs to the LSTM, the upper rows are the outputs of the LSTM, and the middle rows are the memory cells (the <strong>$c_t$</strong>’s and <strong>$h_t$</strong>’s) and gates. Arrows represent function applications (usually affine transformations followed by a nonlinearity).</p>
-<h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><h2 id="In-order-System"><a href="#In-order-System" class="headerlink" title="In-order System"></a>In-order System</h2><center></center>
+<h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><h2 id="In-order-System"><a href="#In-order-System" class="headerlink" title="In-order System"></a>In-order System</h2><center><img src="/2017/09/02/paper170903/sentence.jpg" title="Syntactic trees of the sentence The little boy likes red tomatoes.."></center>
 
 <h3 id="Post-order-System"><a href="#Post-order-System" class="headerlink" title="Post-order System"></a>Post-order System</h3><p>The process of bottom-up parsing can be regarded as <em>post-order</em> traversal over a constituent tree. For example, given the sentence in image above, a bottom-up shift reduce parser takes the action sequence in table below.</p>
-<center></center>
+<center><img src="/2017/09/02/paper170903/bottom-top.jpg" title="Bottom-top System}</center> <p>The full order of recognition for the tree nodes is $3\rightarrow4\rightarrow5\rightarrow2\rightarrow7\rightarrow9\rightarrow10\rightarrow8\rightarrow6\rightarrow11\rightarrow1$.</p> <h3 id=Pre-order-System><a href=#Pre-order-System class=headerlink title=Pre-order System></a>Pre-order System</h3><p>The process of bottom-up parsing can be regarded as <em>pre-order</em> traversal over a constituent tree. For example, given the sentence in image above, a top-down shift reduce parser takes the action sequence in table below.</p> <center>{% asset_img top-down.jpg Top-down System}</center> <p>The full order of recognition for the tree nodes is $1\rightarrow2\rightarrow3\rightarrow4\rightarrow5\rightarrow6\rightarrow7\rightarrow8\rightarrow9\rightarrow10\rightarrow11$.</p> <h3 id=In-order-System-1><a href=#In-order-System-1 class=headerlink title=In-order System></a>In-order System</h3><p>Combine with the bottom-up and top-down system, the in-order system like that:</p> <center>{% asset_img in-order.jpg In-order System}</center> <p>The full order of recognition for the tree nodes is $3\rightarrow2\rightarrow4\rightarrow5\rightarrow1\rightarrow7\rightarrow6\rightarrow9\rightarrow8\rightarrow10\rightarrow11$.</p> <p>The set of transition actions are defined as:</p> <ul> <li>SHIFT: pop the front word from the buffer, and push it onto the stack.</li> <li>PJ-X: project a nonterminal with label X on the top of the stack.</li> <li>REDUCE: repeatedly pop completed subtrees or terminal symbols from the stack until an projected nonterminal is popped and used as the label of a new constituent, and furthermore, one more item on the top of stack is popped as the leftmost child of the new constituent and the popped as the leftmost child of the new constituent and the popped subtrees as its rest children. This new completed constituent is pushed onto the stack as a single composite item.</li> <li>FINISH: pop the root node off the stack and ends parsing.</li> </ul> <center>{% asset_img in-order-equation.jpg }</center> <h2 id=Neural-Parsing-Model><a href=#Neural-Parsing-Model class=headerlink title=Neural Parsing Model></a>Neural Parsing Model</h2><center>{% asset_img framework.jpg framework of the transition-based model}</center> <h3 id=Word-representation><a href=#Word-representation class=headerlink title=Word representation></a>Word representation</h3><p>This paper combing three different part of word embedding to represent the word:</p> <ul> <li>pretrained word embedding, ${\overline{e}}_{w_i}$</li>
+<li>randomly initialized embeddings, $e_{w_i}$</li>
+<li>randomly initialized part-of-speech embedding, $e_{p_i}$</li>
+</ul>
+<center>$x_i =f(W_{input}[e_{p_i}; \overline{e}_{w_i}; e_{w_i} + b_{input} ]) $</center>
+
+<h3 id=" alt="Stack-representation"></center>
       
     </div>
     
@@ -439,7 +451,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

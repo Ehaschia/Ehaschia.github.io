@@ -87,9 +87,10 @@
 <meta property="og:description" content="It is a interesting work that it learns text template during generation sentence from knowledge. Template is really useful since sentences are be written more based on templates than on words one by o">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2019/03/10/paper20190310/hsmm.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/10/paper20190310/trans.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/03/10/paper20190310/emiss.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/03/10/paper20190310/loss.jpg">
-<meta property="og:updated_time" content="2019-03-10T15:10:29.542Z">
+<meta property="og:updated_time" content="2019-03-15T15:06:05.065Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Learning Neural Templates for Text Generation">
 <meta name="twitter:description" content="It is a interesting work that it learns text template during generation sentence from knowledge. Template is really useful since sentences are be written more based on templates than on words one by o">
@@ -318,7 +319,7 @@
 <p>Objective function is:</p>
 <script type="math/tex; mode=display">p(y, z | x; \theta) = \prod_{i=1}^{n-1} p_t(z_{i+1} | z_i, x) \times \prod_{i=1}^{n} p_e(y_i | z_i, x)</script><h2 id="Parameterized"><a href="#Parameterized" class="headerlink" title="Parameterized"></a>Parameterized</h2><h3 id="Encoder"><a href="#Encoder" class="headerlink" title="Encoder"></a>Encoder</h3><p>Encoder is traditional neural network.</p>
 <h3 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h3><p><strong>Transition Distribution</strong></p>
-
+<img src="/2019/03/10/paper20190310/trans.jpg" title="Transition Distribution">
 <p><strong>Emission Distribution</strong></p>
 <img src="/2019/03/10/paper20190310/emiss.jpg" title="Emission Distribution">
 <h1 id="Learning"><a href="#Learning" class="headerlink" title="Learning"></a>Learning</h1><p>This model marginalize over these variables to maximize the log marginal-likelihood of the observed tokens y given x.</p>
@@ -369,6 +370,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/15/paper20190315/" rel="prev" title="A Tutorial on Deep Latent Variable Models of Natural Language">
+                A Tutorial on Deep Latent Variable Models of Natural Language <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -445,7 +450,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -636,24 +641,7 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src>
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -706,6 +694,43 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src>
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
   
 
 

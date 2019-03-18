@@ -94,7 +94,7 @@
 <meta property="og:image" content="http://yoursite.com/2017/09/17/paper170917/performance.jpg">
 <meta property="og:image" content="http://yoursite.com/2017/09/17/paper170917/singal.jpg">
 <meta property="og:image" content="http://yoursite.com/2017/09/17/paper170917/double.jpg">
-<meta property="og:updated_time" content="2018-02-26T16:00:28.261Z">
+<meta property="og:updated_time" content="2019-03-18T13:36:48.265Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Reasoning with Heterogeneous Knowledge for Commonsense Machine Comprehension">
 <meta name="twitter:description" content="BriefThis work focus on commonsense knowledge. As described in this paper, they propose a new commonsense approach  to address two problem:  How to mine and represent different kinds of implicit knowl">
@@ -408,19 +408,13 @@
 </tbody>
 </table>
 </div>
-<h4 id="Format-to-represent-knowledge"><a href="#Format-to-represent-knowledge" class="headerlink" title="Format to represent knowledge"></a>Format to represent knowledge</h4><center>$X \stackrel{f}{\longrightarrow} Y : s$</center> 
-
-<p>It means element $Y$ can be inferred form element $X$ under relation $f$, with an inference cost $s$. An element can stand for either event, entity or sentiment.</p>
+<h4 id="Format-to-represent-knowledge"><a href="#Format-to-represent-knowledge" class="headerlink" title="Format to represent knowledge"></a>Format to represent knowledge</h4><script type="math/tex; mode=display">X \stackrel{f}{\longrightarrow} Y : s</script><p>It means element $Y$ can be inferred form element $X$ under relation $f$, with an inference cost $s$. An element can stand for either event, entity or sentiment.</p>
 <h4 id="Mining-Event-Narrative-Knowledge"><a href="#Mining-Event-Narrative-Knowledge" class="headerlink" title="Mining Event Narrative Knowledge"></a>Mining Event Narrative Knowledge</h4><p>Instance: We can infer “X ordered some foods”  form “X walked to a restaurant” using narrative knowledge.</p>
 <p>This paper proposes two models to encode this  knowledge using inference rules.</p>
 <p>First is based on ordered PMI. Given two element $e_1$ and $e_2$, this model calculates the cost of inference rule $e_1  \stackrel{narrative}{\longrightarrow} e_2$ as:</p>
-<center>$cost(e_1 \rightarrow e_2) = - log\frac{C(e_1, e_2)}{C(e_1, *), C(*, e_2)}$</center>
-
-<p>Here $C(e_1, e_2)$ is the order sensitive count that element $e_1$ occurs before element $e_2$ in different sentences of the same document.</p>
+<script type="math/tex; mode=display">cost(e_1 \rightarrow e_2) = - log\frac{C(e_1, e_2)}{C(e_1, *), C(*, e_2)}</script><p>Here $C(e_1, e_2)$ is the order sensitive count that element $e_1$ occurs before element $e_2$ in different sentences of the same document.</p>
 <p>Second is a variant of the skip-gram model. The model aims to find a element representations that can accurately predict relevant elements in sentences afterwards. Given $n$ asymmetric pairs of elements $(e<em>1^1, e_2^1)$,  $(e_1^2, e_2^2)$, … ,$(e_1^n, e_2^n)$ identified from training data, the objective of this model is to maximize the average log probability $\frac{1}{n} \sum</em>{i=1}^{n}log{P(e_2^i|e_1^i)}$ and the prob $P(e_2| e_1)$ is defined using the softmax function:</p>
-<center>$P(e_2| e_1) \varpropto exp(\mathbf{v'}_{e_2}^{T}\mathbf{v}_{e_1})$</center>
-
-<p>where $\mathbf{v}_e$and $\mathbf{v’}_e$ are “antecedent” and “consequent” vector representation of element $e$. And they use the nagative inner product as the cost of inference rule.</p>
+<script type="math/tex; mode=display">P(e_2| e_1) \varpropto exp(\mathbf{v'}_{e_2}^{T}\mathbf{v}_{e_1})</script><p>where $\mathbf{v}_e$and $\mathbf{v’}_e$ are “antecedent” and “consequent” vector representation of element $e$. And they use the nagative inner product as the cost of inference rule.</p>
 <h4 id="Mining-Entity-Semantic-Knowledge"><a href="#Mining-Entity-Semantic-Knowledge" class="headerlink" title="Mining Entity Semantic Knowledge"></a>Mining Entity Semantic Knowledge</h4><p>Instance: if a premise document contains “Starbucks”, then “coffeehouse” and “lat- te” will be reasonable entities in hypothesis since “Starbucks” is a possible coreference of “coffee- house” and it is semantically related to “latte”.</p>
 <ol>
 <li><em>Co-reference relation</em>,which indicates that two elements refer to the same entity in environment. Actually, an entity is often referred using its hypernyms. So using Wordnet information build inference rule $X \stackrel{coref}{\longrightarrow} Y$. Cost is 0 if these two elements are lemmas in the same Wordnet synset, or with hypernyms relation in Wordnet. Otherwise, the cost is 1.</li>
@@ -429,9 +423,7 @@
 <h4 id="Mining-Sentiment-Coherent-Knowledge"><a href="#Mining-Sentiment-Coherent-Knowledge" class="headerlink" title="Mining Sentiment Coherent Knowledge"></a>Mining Sentiment Coherent Knowledge</h4><p>i.e., a reasonable hypothesis should be sentimen- tal coherent with its premise document.</p>
 <p>First setting a word is positivity, negativity or objectivity. Then setting inference rules’ cost by element has the same polarity or not.</p>
 <h4 id="Metric-Learning-to-Calibrate-Cost-Measurement"><a href="#Metric-Learning-to-Calibrate-Cost-Measurement" class="headerlink" title="Metric Learning to Calibrate Cost Measurement"></a>Metric Learning to Calibrate Cost Measurement</h4><p>So far, we have many inference rules under different relations. we need a metric to calibrate inference rule cost. So using the metric learning, this paper use a non-linear layer to the original cost $s_r$ of inference rule $r$ under relation $f$:</p>
-<center>$c_r = sigmoid(w_fs_r + b_f)$</center>
-
-<p>Calibration parameters will be trained along with other parameters in model.</p>
+<script type="math/tex; mode=display">c_r = sigmoid(w_fs_r + b_f)</script><p>Calibration parameters will be trained along with other parameters in model.</p>
 <h4 id="Dealing-with-Negation"><a href="#Dealing-with-Negation" class="headerlink" title="Dealing with Negation"></a>Dealing with Negation</h4><p>The existence of negation is detected using dependency relations(dependency parse?). And set the cost of negation inference rules is $1-s$</p>
 <h2 id="Machine-Comprehension-via-Commonsense-Reasoning"><a href="#Machine-Comprehension-via-Commonsense-Reasoning" class="headerlink" title="Machine Comprehension via Commonsense Reasoning"></a>Machine Comprehension via Commonsense Reasoning</h2><p>There is the model this paper used.</p>
 <p>Three part: 1) how to infer from a premise document to a hypothesis using inference rules. 2)how to choose inference rules for a specific reasoning context. 3) how to measure the reasoning distance from a premise document to a hypothesis by summarizing the costs of all possible inferences.</p>
@@ -444,15 +436,13 @@
 <img src="/2017/09/17/paper170917/prob.jpg">
 <p>and the $P$ in the last line is the defined as:</p>
 <img src="/2017/09/17/paper170917/p.jpg">
-<p>$g$ is : (detail see paper)</p>
+<p>$g$ is :</p>
 <img src="/2017/09/17/paper170917/g.jpg">
 <h3 id="Reasoning-Distance-Between-Premise-Document-and-Hypothesis"><a href="#Reasoning-Distance-Between-Premise-Document-and-Hypothesis" class="headerlink" title="Reasoning Distance Between Premise Document and Hypothesis"></a>Reasoning Distance Between Premise Document and Hypothesis</h3><p>Given a premise document, this section shows how to measure whether a hypothesis is coherent using above inference model. $L(D →H)$ as the expected cost sum of all valid inferences:</p>
 <img src="/2017/09/17/paper170917/l.jpg">
 <h3 id="Model-Learning"><a href="#Model-Learning" class="headerlink" title="Model Learning"></a>Model Learning</h3><p>Define the posterior probability :</p>
 <p>learning the log likelihood of choosing the right hypothesis $H^+$ for $D$:</p>
-<center>$L(\theta) = -log \prod P(H^+ | D)$ </center>
-
-<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p>Compare with baseline:</p>
+<script type="math/tex; mode=display">L(\theta) = -log \prod P(H^+ | D)​</script><h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p>Compare with baseline:</p>
 <img src="/2017/09/17/paper170917/performance.jpg">
 <p>Compare with only one source:</p>
 <img src="/2017/09/17/paper170917/singal.jpg">

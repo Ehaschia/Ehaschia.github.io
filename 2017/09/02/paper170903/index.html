@@ -91,7 +91,14 @@
 <meta property="og:image" content="http://yoursite.com/2017/09/02/paper170903/stack-lstm.jpg">
 <meta property="og:image" content="http://yoursite.com/2017/09/02/paper170903/sentence.jpg">
 <meta property="og:image" content="http://yoursite.com/2017/09/02/paper170903/bottom-top.jpg">
-<meta property="og:updated_time" content="2018-02-26T16:00:34.678Z">
+<meta property="og:image" content="http://yoursite.com/2017/09/02/paper170903/top-down.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/09/02/paper170903/in-order.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/09/02/paper170903/in-order-equation.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/09/02/paper170903/framework.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/09/02/paper170903/bi-composition.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/09/02/paper170903/wsj23.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/09/02/paper170903/dependency.jpg">
+<meta property="og:updated_time" content="2019-03-18T13:06:33.664Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="In-Order Transition-based Constituent Parsing">
 <meta name="twitter:description" content="A Transition-based constituent parsing method and this method can be used to dependency parsing, BackgroundTransition-based constituent parsingTransition-based constituent parsing takes a left-to-righ">
@@ -336,13 +343,66 @@
 <h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><h2 id="In-order-System"><a href="#In-order-System" class="headerlink" title="In-order System"></a>In-order System</h2><center><img src="/2017/09/02/paper170903/sentence.jpg" title="Syntactic trees of the sentence The little boy likes red tomatoes.."></center>
 
 <h3 id="Post-order-System"><a href="#Post-order-System" class="headerlink" title="Post-order System"></a>Post-order System</h3><p>The process of bottom-up parsing can be regarded as <em>post-order</em> traversal over a constituent tree. For example, given the sentence in image above, a bottom-up shift reduce parser takes the action sequence in table below.</p>
-<center><img src="/2017/09/02/paper170903/bottom-top.jpg" title="Bottom-top System}</center> <p>The full order of recognition for the tree nodes is $3\rightarrow4\rightarrow5\rightarrow2\rightarrow7\rightarrow9\rightarrow10\rightarrow8\rightarrow6\rightarrow11\rightarrow1$.</p> <h3 id=Pre-order-System><a href=#Pre-order-System class=headerlink title=Pre-order System></a>Pre-order System</h3><p>The process of bottom-up parsing can be regarded as <em>pre-order</em> traversal over a constituent tree. For example, given the sentence in image above, a top-down shift reduce parser takes the action sequence in table below.</p> <center>{% asset_img top-down.jpg Top-down System}</center> <p>The full order of recognition for the tree nodes is $1\rightarrow2\rightarrow3\rightarrow4\rightarrow5\rightarrow6\rightarrow7\rightarrow8\rightarrow9\rightarrow10\rightarrow11$.</p> <h3 id=In-order-System-1><a href=#In-order-System-1 class=headerlink title=In-order System></a>In-order System</h3><p>Combine with the bottom-up and top-down system, the in-order system like that:</p> <center>{% asset_img in-order.jpg In-order System}</center> <p>The full order of recognition for the tree nodes is $3\rightarrow2\rightarrow4\rightarrow5\rightarrow1\rightarrow7\rightarrow6\rightarrow9\rightarrow8\rightarrow10\rightarrow11$.</p> <p>The set of transition actions are defined as:</p> <ul> <li>SHIFT: pop the front word from the buffer, and push it onto the stack.</li> <li>PJ-X: project a nonterminal with label X on the top of the stack.</li> <li>REDUCE: repeatedly pop completed subtrees or terminal symbols from the stack until an projected nonterminal is popped and used as the label of a new constituent, and furthermore, one more item on the top of stack is popped as the leftmost child of the new constituent and the popped as the leftmost child of the new constituent and the popped subtrees as its rest children. This new completed constituent is pushed onto the stack as a single composite item.</li> <li>FINISH: pop the root node off the stack and ends parsing.</li> </ul> <center>{% asset_img in-order-equation.jpg }</center> <h2 id=Neural-Parsing-Model><a href=#Neural-Parsing-Model class=headerlink title=Neural Parsing Model></a>Neural Parsing Model</h2><center>{% asset_img framework.jpg framework of the transition-based model}</center> <h3 id=Word-representation><a href=#Word-representation class=headerlink title=Word representation></a>Word representation</h3><p>This paper combing three different part of word embedding to represent the word:</p> <ul> <li>pretrained word embedding, ${\overline{e}}_{w_i}$</li>
+<center><img src="/2017/09/02/paper170903/bottom-top.jpg" title="Bottom-top System"></center>
+
+
+
+<p>The full order of recognition for the tree nodes is $3\rightarrow4\rightarrow5\rightarrow2\rightarrow7\rightarrow9\rightarrow10\rightarrow8\rightarrow6\rightarrow11\rightarrow1$.</p>
+<h3 id="Pre-order-System"><a href="#Pre-order-System" class="headerlink" title="Pre-order System"></a>Pre-order System</h3><p>The process of bottom-up parsing can be regarded as <em>pre-order</em> traversal over a constituent tree. For example, given the sentence in image above, a top-down shift reduce parser takes the action sequence in table below.</p>
+<center><img src="/2017/09/02/paper170903/top-down.jpg" title="Top-down System"></center>
+
+<p>The full order of recognition for the tree nodes is $1\rightarrow2\rightarrow3\rightarrow4\rightarrow5\rightarrow6\rightarrow7\rightarrow8\rightarrow9\rightarrow10\rightarrow11$.</p>
+<h3 id="In-order-System-1"><a href="#In-order-System-1" class="headerlink" title="In-order System"></a>In-order System</h3><p>Combine with the bottom-up and top-down system, the in-order system like that:</p>
+<center><img src="/2017/09/02/paper170903/in-order.jpg" title="In-order System"></center>
+
+<p>The full order of recognition for the tree nodes is  $3\rightarrow2\rightarrow4\rightarrow5\rightarrow1\rightarrow7\rightarrow6\rightarrow9\rightarrow8\rightarrow10\rightarrow11$.</p>
+<p>The set of transition actions are defined as:</p>
+<ul>
+<li>SHIFT: pop the front word from the buffer, and push it onto the stack.</li>
+<li>PJ-X: project a nonterminal with label X on the top of the stack.</li>
+<li>REDUCE: repeatedly pop completed subtrees or terminal symbols from the stack until an projected nonterminal is popped and used as the label of a new constituent, and furthermore, one more item on the top of stack is popped as the leftmost child of the new constituent and the popped as the leftmost child of the new constituent and  the popped subtrees as its rest children. This new completed constituent is pushed onto the stack as a single composite item.</li>
+<li>FINISH: pop the root node off the stack and ends parsing.</li>
+</ul>
+<center><img src="/2017/09/02/paper170903/in-order-equation.jpg"></center>
+
+
+
+<h2 id="Neural-Parsing-Model"><a href="#Neural-Parsing-Model" class="headerlink" title="Neural Parsing Model"></a>Neural Parsing Model</h2><center><img src="/2017/09/02/paper170903/framework.jpg" title="framework of the transition-based model"></center>
+
+<h3 id="Word-representation"><a href="#Word-representation" class="headerlink" title="Word representation"></a>Word representation</h3><p>This paper combing three different part of word embedding to represent the word:</p>
+<ul>
+<li>pretrained word embedding, ${\overline{e}}_{w_i}$</li>
 <li>randomly initialized embeddings, $e_{w_i}$</li>
 <li>randomly initialized part-of-speech embedding, $e_{p_i}$</li>
 </ul>
 <center>$x_i =f(W_{input}[e_{p_i}; \overline{e}_{w_i}; e_{w_i} + b_{input} ]) $</center>
 
-<h3 id=" alt="Stack-representation"></center>
+<h3 id="Stack-representation"><a href="#Stack-representation" class="headerlink" title="Stack representation"></a>Stack representation</h3><p>This paper employs a bidirectional LSTM as the composition function to represent constituents on stack.</p>
+<center><img src="/2017/09/02/paper170903/bi-composition.jpg"></center>
+
+<h3 id="Greedy-action-classification"><a href="#Greedy-action-classification" class="headerlink" title="Greedy action classification"></a>Greedy action classification</h3><p>Given a sentence $w<em>0, w_1, …, w</em>{n-1}$, where $w_i$ is the $i$th word, and $n$ is the length of the sentence, our parser makes local action classification decisions incrementally. For the $k$th parsing state like $[s_j, …, s_1, s_0, i, false]$, the probability distribution of the current action $p$ is:</p>
+<center>$p = SOFTMAX(W[h_{stk} ; h_{buf}; h_{ah} + b])$</center>
+
+<p>where $W$ and $b$ are model parameters, the representation of stack information $h_{stk}$ is</p>
+<center>$h_{stk} = stack-LSTM[s_0, s_1, ..., s_j]$</center>
+
+<p>the representation of buffer information $h_{buf}$ is</p>
+<center>$h_{buf} = stack-LSTM[x_i, x_{i+1}, ..., x_n]$</center>
+
+<p>$x$ is the word representation, and the representation of action history $h_{ah}$ is</p>
+<center>$h_{ah} = LSTM[e_{act_{k-1}}, e_{act_{k-1}}, ..., e_{act_0}]$</center>
+
+<p>where $e<em>{act</em>{k-1}}$ is the representation of action in $k-1$th parsing state.</p>
+<p><strong>Training</strong> minimize the cross-entropy loss objective with an $l_2$ regularization term:</p>
+<center>$L(\theta) = -\sum_{i}\sum_{j}log p_{a_{ij}} + \frac{\lambda}{2}||\theta||^{2}$</center>
+
+<h1 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h1><center><img src="/2017/09/02/paper170903/wsj23.jpg" title="Final result on WSJ section 23"></center>
+
+<center><img src="/2017/09/02/paper170903/dependency.jpg" title="Dependency parsing on WSJ section 23. “-re” means fully-supervised reranking and “-sre” means semi-supervised reranking."></center>
+
+<h1 id="Comment"><a href="#Comment" class="headerlink" title="Comment"></a>Comment</h1><p>This paper proposed a constituent parsing system based on the in-order traversal over syntactic trees, aiming to find a compromise between bottom-up constituent information and top-down lookahead information. The parser archives <strong>91.8</strong> F1 score in WSJ section 23.</p>
+<p>The idea of this paper is very straightforward but clever, it just combine two previous work and get a state-of-art performance. Based on stack-LSTM, it can be implement very easily by tensorflow or pytouch. Beside that, It’a very basic idea so that the idea can be implement to constituent parsing and dependency parsing, it can also be used to train a semi-supervised model.</p>
+
       
     </div>
     
@@ -502,7 +562,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Background"><span class="nav-number">1.</span> <span class="nav-text">Background</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Transition-based-constituent-parsing"><span class="nav-number">1.1.</span> <span class="nav-text">Transition-based constituent parsing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bottom-up-System"><span class="nav-number">1.1.1.</span> <span class="nav-text">Bottom-up System</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Top-down-System"><span class="nav-number">1.1.2.</span> <span class="nav-text">Top-down System</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stack-LSTM"><span class="nav-number">1.2.</span> <span class="nav-text">Stack-LSTM</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#In-order-System"><span class="nav-number">2.1.</span> <span class="nav-text">In-order System</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Post-order-System"><span class="nav-number">2.1.1.</span> <span class="nav-text">Post-order System</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Background"><span class="nav-number">1.</span> <span class="nav-text">Background</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Transition-based-constituent-parsing"><span class="nav-number">1.1.</span> <span class="nav-text">Transition-based constituent parsing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bottom-up-System"><span class="nav-number">1.1.1.</span> <span class="nav-text">Bottom-up System</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Top-down-System"><span class="nav-number">1.1.2.</span> <span class="nav-text">Top-down System</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stack-LSTM"><span class="nav-number">1.2.</span> <span class="nav-text">Stack-LSTM</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#In-order-System"><span class="nav-number">2.1.</span> <span class="nav-text">In-order System</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Post-order-System"><span class="nav-number">2.1.1.</span> <span class="nav-text">Post-order System</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pre-order-System"><span class="nav-number">2.1.2.</span> <span class="nav-text">Pre-order System</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#In-order-System-1"><span class="nav-number">2.1.3.</span> <span class="nav-text">In-order System</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Neural-Parsing-Model"><span class="nav-number">2.2.</span> <span class="nav-text">Neural Parsing Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Word-representation"><span class="nav-number">2.2.1.</span> <span class="nav-text">Word representation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stack-representation"><span class="nav-number">2.2.2.</span> <span class="nav-text">Stack representation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Greedy-action-classification"><span class="nav-number">2.2.3.</span> <span class="nav-text">Greedy action classification</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Experiment"><span class="nav-number">3.</span> <span class="nav-text">Experiment</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Comment"><span class="nav-number">4.</span> <span class="nav-text">Comment</span></a></li></ol></div>
             
 
           </div>

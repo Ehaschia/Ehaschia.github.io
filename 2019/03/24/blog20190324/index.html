@@ -79,22 +79,17 @@
 
 
 
-<meta name="description" content="It is a interesting work that it learns text template during generation sentence from knowledge. Template is really useful since sentences are be written more based on templates than on words one by o">
+<meta name="description" content="目的目前现有的翻译软件 (google translator) 在日中翻译时使用英语进行“桥接”，这种先将日文翻译成英语再由英语翻译成中文的方法效果非常差，特别时翻译小说的时候。当然这是由于缺乏大量中日对应语料的无奈之举。 针对有对应语料的商用翻译软件 (百度，小牛)，由于使用的大量训练数据是类似于联合国正式文件，合同之类的语料，在翻译轻小说的时候对于一些简写，轻小说特有的缩写，以及涉及奇幻，情色">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Learning Neural Templates for Text Generation">
-<meta property="og:url" content="http://yoursite.com/2019/03/10/paper20190310/index.html">
+<meta property="og:title" content="Light Novel Translator">
+<meta property="og:url" content="http://yoursite.com/2019/03/24/blog20190324/index.html">
 <meta property="og:site_name" content="Ehaschia&#39;s Blog">
-<meta property="og:description" content="It is a interesting work that it learns text template during generation sentence from knowledge. Template is really useful since sentences are be written more based on templates than on words one by o">
+<meta property="og:description" content="目的目前现有的翻译软件 (google translator) 在日中翻译时使用英语进行“桥接”，这种先将日文翻译成英语再由英语翻译成中文的方法效果非常差，特别时翻译小说的时候。当然这是由于缺乏大量中日对应语料的无奈之举。 针对有对应语料的商用翻译软件 (百度，小牛)，由于使用的大量训练数据是类似于联合国正式文件，合同之类的语料，在翻译轻小说的时候对于一些简写，轻小说特有的缩写，以及涉及奇幻，情色">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2019/03/10/paper20190310/hsmm.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/03/10/paper20190310/trans.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/03/10/paper20190310/emiss.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/03/10/paper20190310/loss.jpg">
-<meta property="og:updated_time" content="2019-03-15T15:06:05.065Z">
+<meta property="og:updated_time" content="2019-03-24T10:00:33.258Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Learning Neural Templates for Text Generation">
-<meta name="twitter:description" content="It is a interesting work that it learns text template during generation sentence from knowledge. Template is really useful since sentences are be written more based on templates than on words one by o">
-<meta name="twitter:image" content="http://yoursite.com/2019/03/10/paper20190310/hsmm.jpg">
+<meta name="twitter:title" content="Light Novel Translator">
+<meta name="twitter:description" content="目的目前现有的翻译软件 (google translator) 在日中翻译时使用英语进行“桥接”，这种先将日文翻译成英语再由英语翻译成中文的方法效果非常差，特别时翻译小说的时候。当然这是由于缺乏大量中日对应语料的无奈之举。 针对有对应语料的商用翻译软件 (百度，小牛)，由于使用的大量训练数据是类似于联合国正式文件，合同之类的语料，在翻译轻小说的时候对于一些简写，轻小说特有的缩写，以及涉及奇幻，情色">
 
 
 
@@ -124,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/10/paper20190310/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/24/blog20190324/">
 
 
 
 
 
-  <title>Learning Neural Templates for Text Generation | Ehaschia's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Light Novel Translator | Ehaschia's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -237,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/10/paper20190310/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/24/blog20190324/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ehaschia Reus">
@@ -254,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Learning Neural Templates for Text Generation</h1>
+          <h1 class="post-title" itemprop="name headline">Light Novel Translator</h1>
         
 
         <div class="post-meta">
@@ -266,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-10T21:25:24+09:00">
-                2019-03-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-24T18:57:25+09:00">
+                2019-03-24
               </time>
             
 
@@ -304,39 +299,30 @@
       
 
       
-        <p>It is a interesting work that it learns text template during generation sentence from knowledge. Template is really useful since sentences are be written more based on templates than on words one by one. From another point of view, grammar can be seen as a summary of the template. We can learn how to do grammar induction from the template learning process.</p>
-<h2 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h2><p>Generation a sentence based on an instance in knowledge graph.</p>
-<p>There have been two mainly method on sentence generation. </p>
-<p>1.Generating sentence based on template like: </p>
-<center>"A *restaurant* is located at *location*." </center>
-
-<p>2.Generating sentence based on a neural network based encoder decoder framework.</p>
-<p>This work combine these two method by a neural network parameterized Hidden Semi-Markov Model (HSMM).</p>
-<h2 id="Hidden-Semi-Markov-Model"><a href="#Hidden-Semi-Markov-Model" class="headerlink" title="Hidden Semi-Markov Model"></a>Hidden Semi-Markov Model</h2><p>HSMM models latent segmentations in an output sequence. Informally, an HSMM is much like an HMM, except emissions may last multiple time-steps, and multi-step emissions need not be independent of each other conditioned on the state. A sketch map is showed as follow:</p>
- <center><img src="/2019/03/10/paper20190310/hsmm.jpg" title="HSMM"></center>
-
-<p>here $(x, y_{1:n})$ is instance of knowledge graph and its corresponding sentence and  $z_i$ is different latent state.</p>
-<p>Objective function is:</p>
-<script type="math/tex; mode=display">p(y, z | x; \theta) = \prod_{i=1}^{n-1} p_t(z_{i+1} | z_i, x) \times \prod_{i=1}^{n} p_e(y_i | z_i, x)</script><h2 id="Parameterized"><a href="#Parameterized" class="headerlink" title="Parameterized"></a>Parameterized</h2><h3 id="Encoder"><a href="#Encoder" class="headerlink" title="Encoder"></a>Encoder</h3><p>Encoder is traditional neural network.</p>
-<h3 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h3><p><strong>Transition Distribution</strong></p>
-<img src="/2019/03/10/paper20190310/trans.jpg" title="Transition Distribution">
-<p><strong>Emission Distribution</strong></p>
-<img src="/2019/03/10/paper20190310/emiss.jpg" title="Emission Distribution">
-<h1 id="Learning"><a href="#Learning" class="headerlink" title="Learning"></a>Learning</h1><p>This model marginalize over these variables to maximize the log marginal-likelihood of the observed tokens y given x.</p>
-<img src="/2019/03/10/paper20190310/loss.jpg" title="loss function">
-<h1 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h1><p>There are a range of similar work such as Chong Wang’s work:</p>
+        <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>目前现有的翻译软件 (google translator) 在日中翻译时使用英语进行“桥接”，这种先将日文翻译成英语再由英语翻译成中文的方法效果非常差，特别时翻译小说的时候。当然这是由于缺乏大量中日对应语料的无奈之举。</p>
+<p>针对有对应语料的商用翻译软件 (百度，小牛)，由于使用的大量训练数据是类似于联合国正式文件，合同之类的语料，在翻译轻小说的时候对于一些简写，轻小说特有的缩写，以及涉及奇幻，情色要素的情节翻译效果不好。</p>
+<p>我们希望训练一个针对于日本 web novel 专门优化的 Neural Machine Translator.</p>
+<h2 id="数据集的获取和处理"><a href="#数据集的获取和处理" class="headerlink" title="数据集的获取和处理"></a>数据集的获取和处理</h2><h3 id="数据的获取"><a href="#数据的获取" class="headerlink" title="数据的获取"></a>数据的获取</h3><p><strong>使用轻国流出的5g轻小说数据库</strong>：5G 的 epub 文件大约可以获得 400m 的 txt 中文文本。但是这个数据有个很大的问题，找不到对应的日文 txt 文本。由于日本对于盗版控制比较严格，比如《学生会的一存》，《物语》这类非 web novel 的轻小说，很难找到对应的 txt 文本，汉化组手里更多的也是 png 扫图，所以找不到对应日文文本。这方法不是很可行。</p>
+<p><strong>使用 galgame 文本</strong>：针对已汉化的 galgame 可以通过解包获得日文文本和对应中文翻译。这是天然标注好的中日对应数据集，不过由于 galgame 特殊性，这类数据中绝大多数的数据都是对话，这跟我们的目的（轻小说翻译器）有很大的 gap 。可行性也不是很高，不过以后将模型移植到 galgame 上时可以用这些数据。</p>
+<p><strong>使用网友翻译web novel 数据</strong>：就在我以为找不到对应数据时，我发现了轻小说家吧的网友整理的大约 350m 网友们翻译的 web novel 数据。这些中文翻译对应的日文原文绝大多数都可以在 syosetu 上免费获得。而且他们也与我们想要使用的语境完全相同。仅有的缺点是：只有 book level 的对应，具体细分还需要大量人工。</p>
+<h3 id="数据的处理"><a href="#数据的处理" class="headerlink" title="数据的处理"></a>数据的处理</h3><p>首先爬取 syosetu 上对应的日文数据。（代码完成了一半）</p>
+<p>针对上文描述的对应问题，如果想要得到可用的数据集，我们需要更加细化的对应。</p>
+<p>目前构想的做法：针对每一本书，根据章节名称，章节数字对中日语料分别进行章节分割，这样我们就分别得到了中日两个章节list。首先针对这两个list进行match，这里我们采用 dp， 每两个章节间的 对应指数 定义为日文章节中中文字符在中文章节中出现的数量，也可以定义为将日文章节先翻译用现有翻译软件译成中文后，对应章节中match的字符数。</p>
+<p>得到章节间的 match 后，我们考虑更细粒度的 match：段落与段落的匹配，与章节匹配类似，我们使用 dp 处理这个部分。得到段落匹配后，由于 web novel 的特殊性，我们暂时不考虑更细粒度的match (sentence level alignment)，因为web novel 的段落相对较短，很多时候一句就是一段。再者，很多时候我们在翻译时有可能中文一句对应日语两句或者翻过来的情况，因此我们暂时只考虑到 paragraph level 的 alignment。</p>
+<p>还有编码方式需要统一成 UTF-8。</p>
+<p>以上部分还没有实现，我猜可能需要大量的时间。</p>
+<h2 id="模型的构建"><a href="#模型的构建" class="headerlink" title="模型的构建"></a>模型的构建</h2><p>我们的模型主要基于 Transformer。Google 17年的 paper <a href="http://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Attention is all you need</a> 介绍了这种结构，并且在 <a href="http://arxiv.org/abs/1807.03819" target="_blank" rel="noopener">Universal Transformers</a> 中将其扩展成不对长度敏感的模型。</p>
+<p>可能用到的文章：</p>
 <ul>
-<li><p><a href="https://arxiv.org/abs/1702.07463" target="_blank" rel="noopener">Sequence Modeling via Segmentations</a>, ICML 2017</p>
-</li>
-<li><p><a href="https://arxiv.org/abs/1706.05565" target="_blank" rel="noopener">Towards Neural Phrase-based Machine Translation</a> (<a href="https://github.com/posenhuang/NPMT" target="_blank" rel="noopener">code</a>), ICLR 2018</p>
-</li>
-<li><p><a href="https://arxiv.org/abs/1804.07855" target="_blank" rel="noopener">Subgoal Discovery for Hierarchical Dialogue Policy Learning</a>, EMNLP 2018</p>
-</li>
-<li><p><a href="https://arxiv.org/abs/1811.02172" target="_blank" rel="noopener">Neural Phrase-to-Phrase Machine Translation</a> on Arxiv</p>
-</li>
+<li><a href="http://arxiv.org/abs/1609.08144" target="_blank" rel="noopener">Google’s Neural Machine Translation System: Bridging the Gap between Human and Machine Translation</a> 针对中文，日文数据的处理方式</li>
+<li><a href="http://arxiv.org/abs/1705.07267" target="_blank" rel="noopener">Search Engine Guided Non-Parametric Neural Machine Translation</a> 利用其他翻译软件的结果提成我们的效果，因为我们的数据量还是有点小，而且现有翻译软件利用大量语料训练出来的模型，已经可以生成比较通顺的句子了，所以利用现有模型作为 knowledge base 非常有必要。</li>
+<li><a href="http://arxiv.org/abs/1810.03581" target="_blank" rel="noopener">Improving the Transformer Translation Model with Document-Level Context</a> 和 <a href="http://arxiv.org/abs/1711.03688" target="_blank" rel="noopener">Document Context Neural Machine Translation with Memory Networks</a> 利用 document level 的信息提升翻译效率，同时我们是否应该考虑更复杂的模型，比如 hierarchical memory networks，第一层章节信息，第二层全书信息。说不定可以参考 <a href="http://arxiv.org/abs/1605.07427" target="_blank" rel="noopener">Hierarchical Memory Networks</a>。</li>
 </ul>
-<p>And Zhouhan Lin’s work: <a href="http://aclweb.org/anthology/W18-3020" target="_blank" rel="noopener">Recurrent-Recursive Network</a></p>
-<p>It will be interesting if we can unsupervised learning template. For example, can we design a language model to learn templates such as previous work that unsupervised learns Chinese word segmentation. Or can we change the HSMM for learning discontinuous template like: “It ls … that ..”.</p>
+<p>还需要考虑的问题：</p>
+<ul>
+<li>要不要考虑中文，日文的分词以及pos-tagging?</li>
+<li>如何处理轻小说中大量出现的【~】，【💗】之类字符？</li>
+</ul>
 
       
     </div>
@@ -361,8 +347,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/29/paper170929/" rel="next" title="Style Transfer from Non-Parallel Text by Cross-Alignment">
-                <i class="fa fa-chevron-left"></i> Style Transfer from Non-Parallel Text by Cross-Alignment
+              <a href="/2019/03/15/paper20190315/" rel="next" title="A Tutorial on Deep Latent Variable Models of Natural Language">
+                <i class="fa fa-chevron-left"></i> A Tutorial on Deep Latent Variable Models of Natural Language
               </a>
             
           </div>
@@ -370,10 +356,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/15/paper20190315/" rel="prev" title="A Tutorial on Deep Latent Variable Models of Natural Language">
-                A Tutorial on Deep Latent Variable Models of Natural Language <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -501,7 +483,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Task"><span class="nav-number">1.</span> <span class="nav-text">Task</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hidden-Semi-Markov-Model"><span class="nav-number">2.</span> <span class="nav-text">Hidden Semi-Markov Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Parameterized"><span class="nav-number">3.</span> <span class="nav-text">Parameterized</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Encoder"><span class="nav-number">3.1.</span> <span class="nav-text">Encoder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Decoder"><span class="nav-number">3.2.</span> <span class="nav-text">Decoder</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#Learning"><span class="nav-number"></span> <span class="nav-text">Learning</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Discussion"><span class="nav-number"></span> <span class="nav-text">Discussion</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目的"><span class="nav-number">1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据集的获取和处理"><span class="nav-number">2.</span> <span class="nav-text">数据集的获取和处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据的获取"><span class="nav-number">2.1.</span> <span class="nav-text">数据的获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据的处理"><span class="nav-number">2.2.</span> <span class="nav-text">数据的处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型的构建"><span class="nav-number">3.</span> <span class="nav-text">模型的构建</span></a></li></ol></div>
             
 
           </div>
@@ -655,7 +637,24 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src>
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
@@ -708,43 +707,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src>
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
   
 
 

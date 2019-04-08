@@ -79,22 +79,20 @@
 
 
 
-<meta name="description" content="This work comes from Tommi Jaakkola. In vision, style transfer is a mature work. But in language, there not so many attention paid on this. Many work learning style transfer from parallel data, but ac">
+<meta name="description" content="This paper proposed a And-Or Graph network. Intuition and MotivationUnify and integrate building block. Build block is the basic component in popular network framework like Inception modules in Google">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Style Transfer from Non-Parallel Text by Cross-Alignment">
-<meta property="og:url" content="http://yoursite.com/2017/09/29/paper170929/index.html">
+<meta property="og:title" content="AOGNets - Compositional grammatical architectures for deep learning">
+<meta property="og:url" content="http://yoursite.com/2019/04/08/paper20190408/index.html">
 <meta property="og:site_name" content="Ehaschia&#39;s Blog">
-<meta property="og:description" content="This work comes from Tommi Jaakkola. In vision, style transfer is a mature work. But in language, there not so many attention paid on this. Many work learning style transfer from parallel data, but ac">
+<meta property="og:description" content="This paper proposed a And-Or Graph network. Intuition and MotivationUnify and integrate building block. Build block is the basic component in popular network framework like Inception modules in Google">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2017/09/29/paper170929/p1.jpg">
-<meta property="og:image" content="http://yoursite.com/2017/09/29/paper170929/p2.jpg">
-<meta property="og:image" content="http://yoursite.com/2017/09/29/paper170929/p3.jpg">
-<meta property="og:image" content="http://yoursite.com/2017/09/29/paper170929/p4.jpg">
-<meta property="og:updated_time" content="2019-03-10T02:02:14.739Z">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/paper20190408/paper20190408/block.jpg">
+<meta property="og:image" content="http://yoursite.com/paper20190408/algorithm.jpg">
+<meta property="og:updated_time" content="2019-04-08T14:17:51.009Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Style Transfer from Non-Parallel Text by Cross-Alignment">
-<meta name="twitter:description" content="This work comes from Tommi Jaakkola. In vision, style transfer is a mature work. But in language, there not so many attention paid on this. Many work learning style transfer from parallel data, but ac">
-<meta name="twitter:image" content="http://yoursite.com/2017/09/29/paper170929/p1.jpg">
+<meta name="twitter:title" content="AOGNets - Compositional grammatical architectures for deep learning">
+<meta name="twitter:description" content="This paper proposed a And-Or Graph network. Intuition and MotivationUnify and integrate building block. Build block is the basic component in popular network framework like Inception modules in Google">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/08/paper20190408/paper20190408/block.jpg">
 
 
 
@@ -124,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/09/29/paper170929/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/08/paper20190408/">
 
 
 
 
 
-  <title>Style Transfer from Non-Parallel Text by Cross-Alignment | Ehaschia's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>AOGNets - Compositional grammatical architectures for deep learning | Ehaschia's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -237,7 +235,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/29/paper170929/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/08/paper20190408/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ehaschia Reus">
@@ -254,7 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Style Transfer from Non-Parallel Text by Cross-Alignment</h1>
+          <h1 class="post-title" itemprop="name headline">AOGNets - Compositional grammatical architectures for deep learning</h1>
         
 
         <div class="post-meta">
@@ -266,8 +264,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-29T13:59:06+09:00">
-                2017-09-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-08T23:17:50+09:00">
+                2019-04-08
               </time>
             
 
@@ -304,32 +302,31 @@
       
 
       
-        <p>This work comes from <a href="  http://people.csail.mit.edu/tommi/papers.html" rel="noopener" target="_blank">Tommi Jaakkola</a>. In vision, style transfer is a mature work. But in language, there not so many attention paid on this. Many work learning style transfer from parallel data, but actually there is not so many parallel data. So this paper is focus on learning a style transfer model from non-parallel text.</p>
-<h2 id="Formulation"><a href="#Formulation" class="headerlink" title="Formulation"></a>Formulation</h2><p>First, this paper assumes a sentence generate by the following process:</p>
-<ol>
-<li>A latent style variable $\textbf{y}$ is generated from some distribution $p(\textbf{y})$;</li>
-<li>A latent content variable $\textbf{z}$ is generated from some distribution $p(\textbf{z})$;</li>
-<li>A data point $\textbf{x}$ is generated from conditional distribution $p(\textbf{x|y, z})$.</li>
+        <p>This paper proposed a And-Or Graph network.</p>
+<h2 id="Intuition-and-Motivation"><a href="#Intuition-and-Motivation" class="headerlink" title="Intuition and Motivation"></a>Intuition and Motivation</h2><p>Unify and integrate building block. Build block is the basic component in popular network framework like Inception modules in GoogleNets and Skip-connections in ResNets.</p>
+<p>To unify these building block,  we need a good framework to exploit the compositionality, reconfigurability and lateral connectivity of these building modules. Here He use And-Or Grammar.</p>
+<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><ul>
+<li>Terminal-nodes: group convolutions</li>
+<li>And-nodes: concatenation</li>
+<li>OR-nodes: summation</li>
+<li>The hierarchy facilitates: like Deep Pyramid ResNets, leads to good balance between depth and width of networks.</li>
+<li>The compositional structure provides much more flexible information flow</li>
+<li>The lateral connections increase the depth of nodes on the flow without introducing extra parameters.</li>
+</ul>
+<p><img src="paper20190408/block.jpg" alt="framework" title="Framework of And-or Building Block"></p>
+<h3 id="Building-the-framework"><a href="#Building-the-framework" class="headerlink" title="Building the framework"></a>Building the framework</h3><p>To build the and-or framework (building block), this paper implements a algorithm and pruning redundant node: </p>
+<p><img src="/paper20190408/algorithm.jpg" alt="algorithm" title="Algorithm For Generating And-Or Block"></p>
+<h2 id="Think-about-it"><a href="#Think-about-it" class="headerlink" title="Think about it"></a>Think about it</h2><h3 id="Author"><a href="#Author" class="headerlink" title="Author"></a>Author</h3><ol>
+<li>Auto-AndOrNets: Neural architecture search (NAS) search the structure of AndOrNet.</li>
+<li>AndOrNets to AOGTransformer</li>
+<li>AndOrNets to AOGReasoner: combine AOGNets and GraphCNNs for common sense reasoning. That combine vision and language.</li>
 </ol>
-<p>So this work focus on that: we know dataset $p(\textbf{x}_1|\textbf{y}_1)$ and $p(\textbf{x}_2|\textbf{y}_2)$ where $\textbf{y}_1$ and $\textbf{y}_2$ is unknown. And we want to learn the style transfer functions between them, namely  $p(\textbf{x}_1|\textbf{x}_2 ; \textbf{y}_1, \textbf{y}_2)$ and $p(\textbf{x}_2|\textbf{x}_1 ; \textbf{y}_1, \textbf{y}_2)$.</p>
-<p>Then the paper proof that: If we see style $\textbf{y} = (\textbf{A}, \textbf{b})$ as an affine transformation, i.e. $\textbf{x} = \textbf{Ay} + \textbf{b} + \epsilon$ where $\epsilon$ is noise, the distribution $\textbf{z}$ cannot be simple, it should be a complex distribution like Gaussian Distribution with more than two components. Only that can recover the transfer give their respective marginals.</p>
-<p>Last, example word substitution suggest that $\textbf{z}$ as the latent content variable should carry most complexity of data $\textbf{x}$. while $\textbf{y}$ as the latent style variable should have relatively simple effects.</p>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>Through the way to calculate $p(\textbf{x}_1| \textbf{x}_2; \textbf{y}_1, \textbf{y}_2)$:</p>
-<img src="/2017/09/29/paper170929/p1.jpg">
-<p>So we can learning with a <strong>autoencoder</strong>.</p>
-<p>If use a variational auto encoder, we can get the reconstruction loss is :</p>
-<img src="/2017/09/29/paper170929/p2.jpg">
-<p>There $E : X \times Y \rightarrow Z$ be a deterministic encoder that infers the mas of content variable $\textbf{z}$ for  a given sentence $\textbf{x}$ from a given style style $\textbf{y}$. let $G : Y \times Z \rightarrow X$ be a probabilistic generator that generates a sentence $\textbf{x}$ from a given style $\textbf{y}$ and centent $\textbf{z}$.</p>
-<h3 id="Aligned-auto-encoder"><a href="#Aligned-auto-encoder" class="headerlink" title="Aligned auto-encoder"></a>Aligned auto-encoder</h3><p>This method is VAE add a constrain : both $\textbf{x}_1$ and $\textbf{x}_2$ are generated using the same latent distribution $p(\textbf{z})$. So the objective function add a Lagrangian relaxation term:</p>
-<img src="/2017/09/29/paper170929/p3.jpg">
-<p>where :</p>
-<img src="/2017/09/29/paper170929/p4.jpg">
-<h3 id="Cross-aligned-auto-encoder"><a href="#Cross-aligned-auto-encoder" class="headerlink" title="Cross-aligned auto-encoder"></a>Cross-aligned auto-encoder</h3><p>Under the generative assumption, we can get $p(x_2 | y_2 )$ as follow:</p>
-<script type="math/tex; mode=display">p(x_2|y_2) = \int_{ x_1 } { x_1 p(x_2|x_1;y_1,y_2) p(x_1|y_1) } dx_1 ,</script><p>thus $x_2$ (sampled from the left-hand side) should exhibit the same distribution as transferred $x_1$ (sampled from the right-hand side), and vice versa. So add a similar constrain.</p>
-<h2 id="Learning"><a href="#Learning" class="headerlink" title="Learning"></a>Learning</h2><ol>
-<li>Instead of training over the discrete sampless generated by $G$, it use softmax distribution.</li>
-<li>use Professor-Forcing.(Clear I’m not familiar with this method, I will write this part after I know this algorithm)</li>
-</ol>
+<h3 id="Me"><a href="#Me" class="headerlink" title="Me"></a>Me</h3><p>I guess this work is just a new neural network that use the stochastic and-or grammar idea to “wrap” it. I guess it should be a flexible structure (adaptive network). We need a  deformable and-or tree like <a href="https://www.cv-foundation.org/openaccess/content_cvpr_2013/papers/Song_Discriminatively_Trained_And-Or_2013_CVPR_paper.pdf" target="_blank" rel="noopener">Discriminatively trained and-or tree models for object detection</a>. Can we use and-or grammar to solve parsing question? Different sentence has different structure. Maybe we can do reinforcement learning or unsupervising learning method to do grammar induction task.</p>
+<p>Maybe related articles to my idea:</p>
+<ul>
+<li><a href="https://aclweb.org/anthology/papers/D/D14/D14-1081/" target="_blank" rel="noopener">The Inside-Outside Recursive Neural Network model for Dependency Parsing</a></li>
+<li><a href="https://arxiv.org/abs/1904.02142" target="_blank" rel="noopener">Unsupervised Latent Tree Induction with Deep Inside-Outside Recursive Autoencoders</a></li>
+</ul>
 
       
     </div>
@@ -354,8 +351,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/17/paper170917/" rel="next" title="Reasoning with Heterogeneous Knowledge for Commonsense Machine Comprehension">
-                <i class="fa fa-chevron-left"></i> Reasoning with Heterogeneous Knowledge for Commonsense Machine Comprehension
+              <a href="/2019/04/01/weeklyreading/" rel="next" title="Weekly reading summary">
+                <i class="fa fa-chevron-left"></i> Weekly reading summary
               </a>
             
           </div>
@@ -363,10 +360,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/10/paper20190310/" rel="prev" title="Learning Neural Templates for Text Generation">
-                Learning Neural Templates for Text Generation <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -498,7 +491,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Formulation"><span class="nav-number">1.</span> <span class="nav-text">Formulation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Method"><span class="nav-number">2.</span> <span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Aligned-auto-encoder"><span class="nav-number">2.1.</span> <span class="nav-text">Aligned auto-encoder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cross-aligned-auto-encoder"><span class="nav-number">2.2.</span> <span class="nav-text">Cross-aligned auto-encoder</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learning"><span class="nav-number">3.</span> <span class="nav-text">Learning</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intuition-and-Motivation"><span class="nav-number">1.</span> <span class="nav-text">Intuition and Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Building-the-framework"><span class="nav-number">2.1.</span> <span class="nav-text">Building the framework</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Think-about-it"><span class="nav-number">3.</span> <span class="nav-text">Think about it</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Author"><span class="nav-number">3.1.</span> <span class="nav-text">Author</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Me"><span class="nav-number">3.2.</span> <span class="nav-text">Me</span></a></li></ol></li></ol></div>
             
 
           </div>

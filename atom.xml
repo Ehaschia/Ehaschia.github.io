@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-08T15:24:45.346Z</updated>
+  <updated>2019-04-21T13:41:35.983Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Unsupervised Recurrent Neural Network Grammars Yoon</title>
+    <link href="http://yoursite.com/2019/04/21/paper20190421/"/>
+    <id>http://yoursite.com/2019/04/21/paper20190421/</id>
+    <published>2019-04-21T13:41:35.000Z</published>
+    <updated>2019-04-21T13:41:35.983Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;NAACL 2019&lt;/p&gt;
+&lt;h2 id=&quot;Intuition&quot;&gt;&lt;a href=&quot;#Intuition&quot; class=&quot;headerlink&quot; title=&quot;Intuition&quot;&gt;&lt;/a&gt;Intuition&lt;/h2&gt;&lt;p&gt;The standard setup for
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>AOGNets - Compositional grammatical architectures for deep learning</title>

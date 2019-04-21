@@ -92,7 +92,14 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://ehaschia.github.io/2019/04/21/paper20190421/framework.jpg">
 <meta property="og:image" content="http://ehaschia.github.io/2019/04/21/paper20190421/go.jpg">
-<meta property="og:updated_time" content="2019-04-21T13:42:55.967Z">
+<meta property="og:image" content="http://ehaschia.github.io/2019/04/21/paper20190421/likelihood.jpg">
+<meta property="og:image" content="http://ehaschia.github.io/2019/04/21/paper20190421/elbo.jpg">
+<meta property="og:image" content="http://ehaschia.github.io/2019/04/21/paper20190421/v_elbo.jpg">
+<meta property="og:image" content="http://ehaschia.github.io/2019/04/21/paper20190421/g_theta.jpg">
+<meta property="og:image" content="http://ehaschia.github.io/2019/04/21/paper20190421/g_phi.jpg">
+<meta property="og:image" content="http://ehaschia.github.io/2019/04/21/paper20190421/sampling.jpg">
+<meta property="og:image" content="http://ehaschia.github.io/2019/04/21/paper20190421/tree.jpg">
+<meta property="og:updated_time" content="2019-04-21T14:03:55.266Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unsupervised Recurrent Neural Network Grammars">
 <meta name="twitter:description" content="NAACL 2019 IntuitionThe standard setup for unsupervised structure learning is to define a generative model over observed data (e.g. sentence) and unobserved structure (e.g. parse tree, part-of-speech">
@@ -312,7 +319,25 @@
 <p>This work use amortized variational inference with a structured inference network that makes them tractably optimoize a lower bound on the log marginal likelihood, while injecting inductive bias by employing a structured inference network.</p>
 <h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><img src="/2019/04/21/paper20190421/framework.jpg" title="Overview of URNNG">
 <p>Like VAE, there also a infence network (left) and generate network (right). Generate network is a traditonal RNNG generate part. The inference network is a CRF parser. </p>
-<h3 id="Generate-objective"><a href="#Generate-objective" class="headerlink" title="Generate objective"></a>Generate objective</h3><p><img src="/2019/04/21/paper20190421/go.jpg" title="Genrate network objective function}</p> <p>In the supervised case where ground-truth <strong>z</strong> is available, we can straightforwardly perform gradient-based optimization to maximize the joint log likelihood $\log (p_{\theta}(\mathbf{x}, \mathbf{z}))$. In unsupervised case, the standard approach is to maximize the log marginal likelihood:</p> <p>{% asset_img likelihood.jpg Genrate network objective function}</p> <p>But for their model, this summation is intractable. </p> <h3 id=Amortized-Variational-Inference><a href=#Amortized-Variational-Inference class=headerlink title=Amortized Variational Inference></a>Amortized Variational Inference</h3><p>Here they introduce a inference network $q_{\phi}(\mathbf{z} | \mathbf{x})$, with the inference network, we can optimize an evidience lower nound (ELBO) on the log marginal likelihood:</p> <p>{% asset_img elbo.jpg ELBO}</p> <p>We use inference network to calcualte every span score $s_{ij}$ of position from $i$ to $j$. Then calcualte the partition by inside-outside method.</p> <h3 id=Optimize><a href=#Optimize class=headerlink title=Optimize></a>Optimize</h3><p>They optimize a variant of the ELBO:</p> <p>{% asset_img v_elbo.jpg Variant of ELBO}</p> <p>The gradient of every part can be calcualte as:</p> <p>{% asset_img g_theta.jpg Graident of generate network}</p> <p>{% asset_img g_phi.jpg Graident of inference network}</p> <p>For $H$ part, gradient can be calculated by automatic differentation.</p> <h3 id=Apendix><a href=#Apendix class=headerlink title=Apendix></a>Apendix</h3><p>Algorithm of samping a tree from inference network:</p> <p>{% asset_img sampling.jpg Sampling Algorithm}</p> <p>Algorithm of tree entropy:</p> <p>{% asset_img tree.jpg Tree Entropy}</p> <p>TODO read the experiment</p>"></p>
+<h3 id="Generate-objective"><a href="#Generate-objective" class="headerlink" title="Generate objective"></a>Generate objective</h3><img src="/2019/04/21/paper20190421/go.jpg" title="Genrate network objective function">
+<p>In the supervised case where ground-truth <strong>z</strong> is available, we can straightforwardly perform gradient-based optimization to maximize the joint log likelihood $\log (p_{\theta}(\mathbf{x}, \mathbf{z}))$. In unsupervised case, the standard approach is to maximize the log marginal likelihood:</p>
+<img src="/2019/04/21/paper20190421/likelihood.jpg" title="Genrate network objective function">
+<p>But for their model, this summation is intractable. </p>
+<h3 id="Amortized-Variational-Inference"><a href="#Amortized-Variational-Inference" class="headerlink" title="Amortized Variational Inference"></a>Amortized Variational Inference</h3><p>Here they introduce a inference network $q_{\phi}(\mathbf{z} | \mathbf{x})$, with the inference network, we can optimize an evidience lower nound (ELBO) on the log marginal likelihood:</p>
+<img src="/2019/04/21/paper20190421/elbo.jpg" title="ELBO">
+<p>We use inference network to calcualte every  span score $s_{ij}$ of position from $i$ to $j$. Then calcualte the partition by inside-outside method.</p>
+<h3 id="Optimize"><a href="#Optimize" class="headerlink" title="Optimize"></a>Optimize</h3><p>They optimize a variant of the ELBO:</p>
+<img src="/2019/04/21/paper20190421/v_elbo.jpg" title="Variant of ELBO">
+<p>The gradient of every part can be calcualte as:</p>
+<img src="/2019/04/21/paper20190421/g_theta.jpg" title="Graident of generate network">
+<img src="/2019/04/21/paper20190421/g_phi.jpg" title="Graident of inference network">
+<p>For $H$ part, gradient can be calculated by automatic differentation.</p>
+<h3 id="Apendix"><a href="#Apendix" class="headerlink" title="Apendix"></a>Apendix</h3><p>Algorithm of samping a tree from inference network:</p>
+<img src="/2019/04/21/paper20190421/sampling.jpg" title="Sampling Algorithm">
+<p>Algorithm of tree entropy:</p>
+<img src="/2019/04/21/paper20190421/tree.jpg" title="Tree Entropy">
+<p>TODO read the experiment</p>
+
       
     </div>
     
@@ -483,7 +508,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intuition"><span class="nav-number">1.</span> <span class="nav-text">Intuition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-objective"><span class="nav-number">2.1.</span> <span class="nav-text">Generate objective</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intuition"><span class="nav-number">1.</span> <span class="nav-text">Intuition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-objective"><span class="nav-number">2.1.</span> <span class="nav-text">Generate objective</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Amortized-Variational-Inference"><span class="nav-number">2.2.</span> <span class="nav-text">Amortized Variational Inference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimize"><span class="nav-number">2.3.</span> <span class="nav-text">Optimize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Apendix"><span class="nav-number">2.4.</span> <span class="nav-text">Apendix</span></a></li></ol></li></ol></div>
             
 
           </div>

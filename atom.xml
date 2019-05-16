@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ehaschia.github.io/"/>
-  <updated>2019-04-21T14:03:55.266Z</updated>
+  <updated>2019-05-16T16:12:19.543Z</updated>
   <id>http://ehaschia.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Bert</title>
+    <link href="http://ehaschia.github.io/2019/05/17/bert/"/>
+    <id>http://ehaschia.github.io/2019/05/17/bert/</id>
+    <published>2019-05-16T16:08:57.000Z</published>
+    <updated>2019-05-16T16:12:19.543Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;我认为是18年NLP领域最好滴工作，google真是如有天助，jacob刚去就搞了个大新闻。ELMo 18年naacl斩获best paper的时候其实我还不是特别感冒，但是BERT真是让pre-train上了一个大台阶。为什么真么说呢，首先，BERT的pre-train
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Unsupervised Recurrent Neural Network Grammars</title>

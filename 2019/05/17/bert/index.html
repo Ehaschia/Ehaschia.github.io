@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="目的目前现有的翻译软件 (google translator) 在日中翻译时使用英语进行“桥接”，这种先将日文翻译成英语再由英语翻译成中文的方法效果非常差，特别时翻译小说的时候。当然这是由于缺乏大量中日对应语料的无奈之举。 针对有对应语料的商用翻译软件 (百度，小牛)，由于使用的大量训练数据是类似于联合国正式文件，合同之类的语料，在翻译轻小说的时候对于一些简写，轻小说特有的缩写，以及涉及奇幻，情色">
+<meta name="description" content="我认为是18年NLP领域最好滴工作，google真是如有天助，jacob刚去就搞了个大新闻。ELMo 18年naacl斩获best paper的时候其实我还不是特别感冒，但是BERT真是让pre-train上了一个大台阶。为什么真么说呢，首先，BERT的pre-train and fine-tune真是相比其他工作而言非常优雅了，特别是fine-tune阶段简直可以称之为傻瓜式；第二，效果惊人，在">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Light Novel Translator">
-<meta property="og:url" content="http://ehaschia.github.io/2019/03/24/blog20190324/index.html">
+<meta property="og:title" content="Bert">
+<meta property="og:url" content="http://ehaschia.github.io/2019/05/17/bert/index.html">
 <meta property="og:site_name" content="Ehaschia&#39;s Blog">
-<meta property="og:description" content="目的目前现有的翻译软件 (google translator) 在日中翻译时使用英语进行“桥接”，这种先将日文翻译成英语再由英语翻译成中文的方法效果非常差，特别时翻译小说的时候。当然这是由于缺乏大量中日对应语料的无奈之举。 针对有对应语料的商用翻译软件 (百度，小牛)，由于使用的大量训练数据是类似于联合国正式文件，合同之类的语料，在翻译轻小说的时候对于一些简写，轻小说特有的缩写，以及涉及奇幻，情色">
+<meta property="og:description" content="我认为是18年NLP领域最好滴工作，google真是如有天助，jacob刚去就搞了个大新闻。ELMo 18年naacl斩获best paper的时候其实我还不是特别感冒，但是BERT真是让pre-train上了一个大台阶。为什么真么说呢，首先，BERT的pre-train and fine-tune真是相比其他工作而言非常优雅了，特别是fine-tune阶段简直可以称之为傻瓜式；第二，效果惊人，在">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-24T10:00:33.258Z">
+<meta property="og:updated_time" content="2019-05-16T16:12:19.543Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Light Novel Translator">
-<meta name="twitter:description" content="目的目前现有的翻译软件 (google translator) 在日中翻译时使用英语进行“桥接”，这种先将日文翻译成英语再由英语翻译成中文的方法效果非常差，特别时翻译小说的时候。当然这是由于缺乏大量中日对应语料的无奈之举。 针对有对应语料的商用翻译软件 (百度，小牛)，由于使用的大量训练数据是类似于联合国正式文件，合同之类的语料，在翻译轻小说的时候对于一些简写，轻小说特有的缩写，以及涉及奇幻，情色">
+<meta name="twitter:title" content="Bert">
+<meta name="twitter:description" content="我认为是18年NLP领域最好滴工作，google真是如有天助，jacob刚去就搞了个大新闻。ELMo 18年naacl斩获best paper的时候其实我还不是特别感冒，但是BERT真是让pre-train上了一个大台阶。为什么真么说呢，首先，BERT的pre-train and fine-tune真是相比其他工作而言非常优雅了，特别是fine-tune阶段简直可以称之为傻瓜式；第二，效果惊人，在">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://ehaschia.github.io/2019/03/24/blog20190324/">
+  <link rel="canonical" href="http://ehaschia.github.io/2019/05/17/bert/">
 
 
 
 
 
-  <title>Light Novel Translator | Ehaschia's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Bert | Ehaschia's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -234,7 +234,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://ehaschia.github.io/2019/03/24/blog20190324/">
+    <link itemprop="mainEntityOfPage" href="http://ehaschia.github.io/2019/05/17/bert/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ehaschia Reus">
@@ -251,7 +251,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Light Novel Translator</h1>
+          <h1 class="post-title" itemprop="name headline">Bert</h1>
         
 
         <div class="post-meta">
@@ -263,8 +263,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-24T18:57:25+09:00">
-                2019-03-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-17T01:08:57+09:00">
+                2019-05-17
               </time>
             
 
@@ -301,30 +301,10 @@
       
 
       
-        <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>目前现有的翻译软件 (google translator) 在日中翻译时使用英语进行“桥接”，这种先将日文翻译成英语再由英语翻译成中文的方法效果非常差，特别时翻译小说的时候。当然这是由于缺乏大量中日对应语料的无奈之举。</p>
-<p>针对有对应语料的商用翻译软件 (百度，小牛)，由于使用的大量训练数据是类似于联合国正式文件，合同之类的语料，在翻译轻小说的时候对于一些简写，轻小说特有的缩写，以及涉及奇幻，情色要素的情节翻译效果不好。</p>
-<p>我们希望训练一个针对于日本 web novel 专门优化的 Neural Machine Translator.</p>
-<h2 id="数据集的获取和处理"><a href="#数据集的获取和处理" class="headerlink" title="数据集的获取和处理"></a>数据集的获取和处理</h2><h3 id="数据的获取"><a href="#数据的获取" class="headerlink" title="数据的获取"></a>数据的获取</h3><p><strong>使用轻国流出的5g轻小说数据库</strong>：5G 的 epub 文件大约可以获得 400m 的 txt 中文文本。但是这个数据有个很大的问题，找不到对应的日文 txt 文本。由于日本对于盗版控制比较严格，比如《学生会的一存》，《物语》这类非 web novel 的轻小说，很难找到对应的 txt 文本，汉化组手里更多的也是 png 扫图，所以找不到对应日文文本。这方法不是很可行。</p>
-<p><strong>使用 galgame 文本</strong>：针对已汉化的 galgame 可以通过解包获得日文文本和对应中文翻译。这是天然标注好的中日对应数据集，不过由于 galgame 特殊性，这类数据中绝大多数的数据都是对话，这跟我们的目的（轻小说翻译器）有很大的 gap 。可行性也不是很高，不过以后将模型移植到 galgame 上时可以用这些数据。</p>
-<p><strong>使用网友翻译web novel 数据</strong>：就在我以为找不到对应数据时，我发现了轻小说家吧的网友整理的大约 350m 网友们翻译的 web novel 数据。这些中文翻译对应的日文原文绝大多数都可以在 syosetu 上免费获得。而且他们也与我们想要使用的语境完全相同。仅有的缺点是：只有 book level 的对应，具体细分还需要大量人工。</p>
-<h3 id="数据的处理"><a href="#数据的处理" class="headerlink" title="数据的处理"></a>数据的处理</h3><p>首先爬取 syosetu 上对应的日文数据。（代码完成了一半）</p>
-<p>针对上文描述的对应问题，如果想要得到可用的数据集，我们需要更加细化的对应。</p>
-<p>目前构想的做法：针对每一本书，根据章节名称，章节数字对中日语料分别进行章节分割，这样我们就分别得到了中日两个章节list。首先针对这两个list进行match，这里我们采用 dp， 每两个章节间的 对应指数 定义为日文章节中中文字符在中文章节中出现的数量，也可以定义为将日文章节先翻译用现有翻译软件译成中文后，对应章节中match的字符数。</p>
-<p>得到章节间的 match 后，我们考虑更细粒度的 match：段落与段落的匹配，与章节匹配类似，我们使用 dp 处理这个部分。得到段落匹配后，由于 web novel 的特殊性，我们暂时不考虑更细粒度的match (sentence level alignment)，因为web novel 的段落相对较短，很多时候一句就是一段。再者，很多时候我们在翻译时有可能中文一句对应日语两句或者翻过来的情况，因此我们暂时只考虑到 paragraph level 的 alignment。</p>
-<p>还有编码方式需要统一成 UTF-8。</p>
-<p>以上部分还没有实现，我猜可能需要大量的时间。</p>
-<h2 id="模型的构建"><a href="#模型的构建" class="headerlink" title="模型的构建"></a>模型的构建</h2><p>我们的模型主要基于 Transformer。Google 17年的 paper <a href="http://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Attention is all you need</a> 介绍了这种结构，并且在 <a href="http://arxiv.org/abs/1807.03819" target="_blank" rel="noopener">Universal Transformers</a> 中将其扩展成不对长度敏感的模型。</p>
-<p>可能用到的文章：</p>
-<ul>
-<li><a href="http://arxiv.org/abs/1609.08144" target="_blank" rel="noopener">Google’s Neural Machine Translation System: Bridging the Gap between Human and Machine Translation</a> 针对中文，日文数据的处理方式</li>
-<li><a href="http://arxiv.org/abs/1705.07267" target="_blank" rel="noopener">Search Engine Guided Non-Parametric Neural Machine Translation</a> 利用其他翻译软件的结果提成我们的效果，因为我们的数据量还是有点小，而且现有翻译软件利用大量语料训练出来的模型，已经可以生成比较通顺的句子了，所以利用现有模型作为 knowledge base 非常有必要。</li>
-<li><a href="http://arxiv.org/abs/1810.03581" target="_blank" rel="noopener">Improving the Transformer Translation Model with Document-Level Context</a> 和 <a href="http://arxiv.org/abs/1711.03688" target="_blank" rel="noopener">Document Context Neural Machine Translation with Memory Networks</a> 利用 document level 的信息提升翻译效率，同时我们是否应该考虑更复杂的模型，比如 hierarchical memory networks，第一层章节信息，第二层全书信息。说不定可以参考 <a href="http://arxiv.org/abs/1605.07427" target="_blank" rel="noopener">Hierarchical Memory Networks</a>。</li>
-</ul>
-<p>还需要考虑的问题：</p>
-<ul>
-<li>要不要考虑中文，日文的分词以及pos-tagging?</li>
-<li>如何处理轻小说中大量出现的【~】，【💗】之类字符？</li>
-</ul>
+        <p>我认为是18年NLP领域最好滴工作，google真是如有天助，jacob刚去就搞了个大新闻。ELMo 18年naacl斩获best paper的时候其实我还不是特别感冒，但是BERT真是让pre-train上了一个大台阶。为什么真么说呢，首先，BERT的pre-train and fine-tune真是相比其他工作而言非常优雅了，特别是fine-tune阶段简直可以称之为傻瓜式；第二，效果惊人，在多个NLP常规数据集上都显著超过了SOTA，虽然不知道是不是因为语料大，计算量提升而带来的还是这种pre-train方式带来的，但至少告诉我们，transfer is possible in DNN，这个发现太重要了；第三，模型之深，参数之多，简直是惊人的，再一次展现了jacob的强大工程能力和google牛逼的硬件设施。BERT这个工作间接杀死了N多人手上的工作，在传统任务上刷榜的，做transfer，multi-task的等等，都被一下子拍翻了，我严重怀疑很多传统任务会因此达到非常好的效果，从而极大地弱化了fancy model structure的作用，看来NLP学者们需要另辟蹊径了，我个人觉得，随着深度学习这几年的发展，传统任务+十万/百万级数据 的标配问题几乎已经得到很好的解决了，在做下去空间也不会有多大了。接下来肯能有两个比较重要的方向：<br>1.向小走：few./zero-shot在NLP可能会真正兴起，面向AGI，not for industry。<br>2.向大走：亿的数据+超深网络做pre-train = one model for all，可能会成为工业界标配，届时大量提升会被pre-train吃掉，模型优化变得不再重要，由于pre-train的广泛应用，可能DNN会迎来在IOT上的广泛应用，也许新的问题和场景会涌现出来，可以拭目以待。</p>
+<p>Copy from 知乎.</p>
+<p>作者：pkpk</p>
+<p>链接：<a href="https://www.zhihu.com/question/298203515/answer/512050719" target="_blank" rel="noopener">https://www.zhihu.com/question/298203515/answer/512050719</a></p>
 
       
     </div>
@@ -349,8 +329,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/15/paper20190315/" rel="next" title="A Tutorial on Deep Latent Variable Models of Natural Language">
-                <i class="fa fa-chevron-left"></i> A Tutorial on Deep Latent Variable Models of Natural Language
+              <a href="/2019/04/21/paper20190421/" rel="next" title="Unsupervised Recurrent Neural Network Grammars">
+                <i class="fa fa-chevron-left"></i> Unsupervised Recurrent Neural Network Grammars
               </a>
             
           </div>
@@ -358,10 +338,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/01/weeklyreading/" rel="prev" title="Weekly reading summary">
-                Weekly reading summary <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -413,17 +389,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -490,22 +457,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目的"><span class="nav-number">1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据集的获取和处理"><span class="nav-number">2.</span> <span class="nav-text">数据集的获取和处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据的获取"><span class="nav-number">2.1.</span> <span class="nav-text">数据的获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据的处理"><span class="nav-number">2.2.</span> <span class="nav-text">数据的处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型的构建"><span class="nav-number">3.</span> <span class="nav-text">模型的构建</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

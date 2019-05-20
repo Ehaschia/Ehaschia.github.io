@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="Ehaschia&#39;s Blog">
 <meta property="og:description" content="3.25-3.31 A Structured Self-attentive Sentence Embedding. matrix attention + penalty  Learning Hierarchical Structures On-The-Fly with a Recurrent-Recursive Model for Sequences  discretized structure,">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-24T04:04:12.387Z">
+<meta property="og:updated_time" content="2019-05-20T14:55:56.404Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Weekly reading summary">
 <meta name="twitter:description" content="3.25-3.31 A Structured Self-attentive Sentence Embedding. matrix attention + penalty  Learning Hierarchical Structures On-The-Fly with a Recurrent-Recursive Model for Sequences  discretized structure,">
@@ -338,6 +338,19 @@
 <p>unsupervised version of RNNG, use amortized variational inference for training. Generate network is RNNG generate part, inference network is a CRF parser. Sample tree from inference network to generate network for training.</p>
 </li>
 </ul>
+<h2 id="4-21-5-19"><a href="#4-21-5-19" class="headerlink" title="4.21-5.19"></a>4.21-5.19</h2><ul>
+<li><p>A Structural Probe for Finding Syntax in Word Representations</p>
+<p>Find syntax information from word representation like ELMo or Bert by a linear transformation matrix.</p>
+</li>
+<li><p>Text Generation from Knowledge Graphs with Graph Transformers</p>
+<p>Propose a dataset and generate multi-sentence text from the output of automatic information extraction systems. Show the useful for structured data format.</p>
+</li>
+<li><p>Learning What and Where to Transfer<br><font color="#0000FF"> Intresting Work</font>  This work consider a problem: what and where information should transfer from source network to target network. They propose a meta-learning method learning a matrix of weight $W_{m, n}$ from source layer $m$ to target layer $n$. The performance significant improved.</p>
+</li>
+<li><p>Latent Variable Model for Multi-modal Translation</p>
+<p>Obeyed Gaussian distribution hidden continuous variable $z$  generate by source sentence $x$. From $z$ we want to generate image $v$. From $x, z$, we generate target sentence $y$.  This work separate $v$ and $x, y$, so the model can be trained the model with image but also can work (inference) without image. To train their model, they use amortized variational inference.</p>
+</li>
+</ul>
 
       
     </div>
@@ -513,7 +526,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-25-3-31"><span class="nav-number">1.</span> <span class="nav-text">3.25-3.31</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-4-7"><span class="nav-number">2.</span> <span class="nav-text">4.1-4.7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-8-4-21"><span class="nav-number">3.</span> <span class="nav-text">4.8- 4.21</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-25-3-31"><span class="nav-number">1.</span> <span class="nav-text">3.25-3.31</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-4-7"><span class="nav-number">2.</span> <span class="nav-text">4.1-4.7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-8-4-21"><span class="nav-number">3.</span> <span class="nav-text">4.8- 4.21</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-21-5-19"><span class="nav-number">4.</span> <span class="nav-text">4.21-5.19</span></a></li></ol></div>
             
 
           </div>

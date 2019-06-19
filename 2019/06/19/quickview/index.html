@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="我认为是18年NLP领域最好滴工作，google真是如有天助，jacob刚去就搞了个大新闻。ELMo 18年naacl斩获best paper的时候其实我还不是特别感冒，但是BERT真是让pre-train上了一个大台阶。为什么真么说呢，首先，BERT的pre-train and fine-tune真是相比其他工作而言非常优雅了，特别是fine-tune阶段简直可以称之为傻瓜式；第二，效果惊人，在">
+<meta name="description" content="Crowdsourcing and Validating Event-focused Emotion Corpora for German and English 一个德英双语的 parallel sentiment (emotion) analysis数据集. 情感分类模型可以直接应用于另一种语言上（通过翻译模型翻译），performance 不会下降。  Leap-LSTM: Enhanci">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Bert">
-<meta property="og:url" content="http://ehaschia.github.io/2019/05/17/bert/index.html">
+<meta property="og:title" content="quickview">
+<meta property="og:url" content="http://ehaschia.github.io/2019/06/19/quickview/index.html">
 <meta property="og:site_name" content="Ehaschia&#39;s Blog">
-<meta property="og:description" content="我认为是18年NLP领域最好滴工作，google真是如有天助，jacob刚去就搞了个大新闻。ELMo 18年naacl斩获best paper的时候其实我还不是特别感冒，但是BERT真是让pre-train上了一个大台阶。为什么真么说呢，首先，BERT的pre-train and fine-tune真是相比其他工作而言非常优雅了，特别是fine-tune阶段简直可以称之为傻瓜式；第二，效果惊人，在">
+<meta property="og:description" content="Crowdsourcing and Validating Event-focused Emotion Corpora for German and English 一个德英双语的 parallel sentiment (emotion) analysis数据集. 情感分类模型可以直接应用于另一种语言上（通过翻译模型翻译），performance 不会下降。  Leap-LSTM: Enhanci">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-16T16:12:19.543Z">
+<meta property="og:updated_time" content="2019-06-19T03:55:07.905Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bert">
-<meta name="twitter:description" content="我认为是18年NLP领域最好滴工作，google真是如有天助，jacob刚去就搞了个大新闻。ELMo 18年naacl斩获best paper的时候其实我还不是特别感冒，但是BERT真是让pre-train上了一个大台阶。为什么真么说呢，首先，BERT的pre-train and fine-tune真是相比其他工作而言非常优雅了，特别是fine-tune阶段简直可以称之为傻瓜式；第二，效果惊人，在">
+<meta name="twitter:title" content="quickview">
+<meta name="twitter:description" content="Crowdsourcing and Validating Event-focused Emotion Corpora for German and English 一个德英双语的 parallel sentiment (emotion) analysis数据集. 情感分类模型可以直接应用于另一种语言上（通过翻译模型翻译），performance 不会下降。  Leap-LSTM: Enhanci">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://ehaschia.github.io/2019/05/17/bert/">
+  <link rel="canonical" href="http://ehaschia.github.io/2019/06/19/quickview/">
 
 
 
 
 
-  <title>Bert | Ehaschia's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>quickview | Ehaschia's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -244,7 +244,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://ehaschia.github.io/2019/05/17/bert/">
+    <link itemprop="mainEntityOfPage" href="http://ehaschia.github.io/2019/06/19/quickview/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ehaschia Reus">
@@ -261,7 +261,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Bert</h1>
+          <h1 class="post-title" itemprop="name headline">quickview</h1>
         
 
         <div class="post-meta">
@@ -273,8 +273,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-17T01:08:57+09:00">
-                2019-05-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-19T12:55:07+09:00">
+                2019-06-19
               </time>
             
 
@@ -311,10 +311,55 @@
       
 
       
-        <p>我认为是18年NLP领域最好滴工作，google真是如有天助，jacob刚去就搞了个大新闻。ELMo 18年naacl斩获best paper的时候其实我还不是特别感冒，但是BERT真是让pre-train上了一个大台阶。为什么真么说呢，首先，BERT的pre-train and fine-tune真是相比其他工作而言非常优雅了，特别是fine-tune阶段简直可以称之为傻瓜式；第二，效果惊人，在多个NLP常规数据集上都显著超过了SOTA，虽然不知道是不是因为语料大，计算量提升而带来的还是这种pre-train方式带来的，但至少告诉我们，transfer is possible in DNN，这个发现太重要了；第三，模型之深，参数之多，简直是惊人的，再一次展现了jacob的强大工程能力和google牛逼的硬件设施。BERT这个工作间接杀死了N多人手上的工作，在传统任务上刷榜的，做transfer，multi-task的等等，都被一下子拍翻了，我严重怀疑很多传统任务会因此达到非常好的效果，从而极大地弱化了fancy model structure的作用，看来NLP学者们需要另辟蹊径了，我个人觉得，随着深度学习这几年的发展，传统任务+十万/百万级数据 的标配问题几乎已经得到很好的解决了，在做下去空间也不会有多大了。接下来肯能有两个比较重要的方向：<br>1.向小走：few./zero-shot在NLP可能会真正兴起，面向AGI，not for industry。<br>2.向大走：亿的数据+超深网络做pre-train = one model for all，可能会成为工业界标配，届时大量提升会被pre-train吃掉，模型优化变得不再重要，由于pre-train的广泛应用，可能DNN会迎来在IOT上的广泛应用，也许新的问题和场景会涌现出来，可以拭目以待。</p>
-<p>Copy from 知乎.</p>
-<p>作者：pkpk</p>
-<p>链接：<a href="https://www.zhihu.com/question/298203515/answer/512050719" target="_blank" rel="noopener">https://www.zhihu.com/question/298203515/answer/512050719</a></p>
+        <ul>
+<li><p>Crowdsourcing and Validating Event-focused Emotion Corpora for German and English</p>
+<p>一个德英双语的 parallel sentiment (emotion) analysis数据集. 情感分类模型可以直接应用于另一种语言上（通过翻译模型翻译），performance 不会下降。</p>
+</li>
+<li><p>Leap-LSTM: Enhancing Long Short-Term Memory for Text Categorization (IJCAI 2019)</p>
+<p>一个可以跳过单词的LSTM，在文本分类上有效果. 类似的：Skip-LSTM, Skim-LSTM</p>
+</li>
+<li><p>An Embarrassingly Simple Approach for Transfer Learning from Pretrained Language Models (NAACL 2019)</p>
+<p>在将LM transfer 到其他task时加一个 LM 的 loss，声称可以解决 catastrophic forgetting （灾难性遗忘）。训练 trick 比较多….</p>
+</li>
+<li><p>Learning to Rank for Plausible Plausibility</p>
+<p>对  plausibility (like NLI task) cross-entropy loss 不是很好。使用 margin-based loss 更好。</p>
+</li>
+<li><p>Every child should have parents: a taxonomy refinement algorithm based on hyperbolic term embeddings (ACL 2019)</p>
+<p>Poincaré Embeddings for Learning Hierarchical Representations (NIPS 2017)</p>
+<p>利用庞加莱圆盘模型训练有结构关系的 embedding。事实上我没看懂…..</p>
+</li>
+<li><p><a href="http://arxiv.org/abs/1906.01973v1" target="_blank" rel="noopener">Generating Multi-Sentence Abstractive Summaries of Interleaved Texts</a></p>
+<p>总结归纳 Interleaved Texts (比如qq群聊)里的 topic. </p>
+</li>
+<li><p>From Balustrades to Pierre Vinken: Looking for Syntax in Transformer Self-Attentions</p>
+<p>从 NMT 中归纳 constituent tree，类似于 A Structural Probe for Finding Syntax in Word Representations 从bert中归纳tree 。不过本文是从 attention head 中归纳。</p>
+</li>
+<li><p>Effective Cross-lingual Transfer of Neural Machine Translation Models without Shared Vocabularies (ACL 2019)</p>
+<p>NMT transfer 的问题。在没有sharing vocabularies 的情况下，transfer 一个 pretrain 的 NMT model 到一个 low source 的语言上。1. word translation, 将 target language 映射到 parent language 的 space 里。2. train parent NMT 时打乱单词order，防止过拟合，有利于encoder 适应新语言的syntax。3. 在 child training 时重用parent language pair, 防止训练数据分布突然变化。</p>
+</li>
+<li><p><a href="http://arxiv.org/abs/1906.01472v2" target="_blank" rel="noopener">Evaluating Discourse in Structured Text Representations</a> (ACL 2019)</p>
+<p>以 Lapate 的 Learning Structured Text Representations为例，discourse 上用 structured attention 学出来的 latent tree structure 跟人类的标注没有任何相似，Structure Attention 在此任务上没用，而且有害。</p>
+</li>
+<li><p><a href="http://arxiv.org/abs/1810.05867v2" target="_blank" rel="noopener">An Empirical Study on Crosslingual Transfer in Probabilistic Topic Models</a></p>
+<p>一篇 survey 有关14 个topic model 哪个更加有效果，分别可以有利于什么task.</p>
+</li>
+<li><p><a href="http://arxiv.org/abs/1906.03926v1" target="_blank" rel="noopener">A Survey of Reinforcement Learning Informed by Natural Language</a> （IJCAI 2019）</p>
+<p>RL 跟 NLP 结合的 survey. （还没看）</p>
+</li>
+<li><p><a href="http://arxiv.org/abs/1906.03889v1" target="_blank" rel="noopener">Topic-Aware Neural Keyphrase Generation for Social Media Language</a> （ACL 2019）</p>
+<p><a href="http://arxiv.org/abs/1906.04106v1" target="_blank" rel="noopener">Neural Keyphrase Generation via Reinforcement Learning with Adaptive Rewards</a> (ACL 2019)</p>
+<p>都是做 keyphrase generation 的。第一篇做 social media 中的提取，利用了neural topic model 联合学习了topic。第二篇是用RL做 document level 的，还提出了一个与 wiki konwledge base 相结合的评价方式。</p>
+</li>
+<li><p><a href="http://arxiv.org/abs/1906.03820v1" target="_blank" rel="noopener">Open-Domain Targeted Sentiment Analysis via Span-Based Extraction and Classification</a> (ACL 2019)</p>
+<p>可能要仔细看。目前感觉比较trival，主要是利用了bert，先label出candidate target，然后套一个分类器。</p>
+</li>
+<li><p><a href="http://arxiv.org/abs/1906.05275v2" target="_blank" rel="noopener">Keeping Notes: Conditional Natural Language Generation with a Scratchpad Mechanism</a> （ACL 2019）</p>
+<p>当代 auto-encoder 是用 encode 生成的 $h<em>i$ 和 attention 得到 $e_i$，然后decoder 成 sentence。Scratchpad Mechanism 利用上一个时刻的 $e</em>{i-1}$ 来 update $h_i$。思路非常简单，实现容易，效果还不错。</p>
+</li>
+<li><p>Antonym-Synonym Classification Based on New Sub-space Embeddings (AAAI 2019)</p>
+<p>把单词非线性映射到两个空间上：同义词空间，反义词空间。考虑了同义词的两个性质：对称性，传递性；反义词的两个性质：对称性，反式传递性来构建loss。考虑是否可以跟我们之前讨论的在不同topic下具有不同的同义，反义性质做结合？</p>
+</li>
+</ul>
 
       
     </div>
@@ -339,8 +384,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/21/paper20190421/" rel="next" title="Unsupervised Recurrent Neural Network Grammars">
-                <i class="fa fa-chevron-left"></i> Unsupervised Recurrent Neural Network Grammars
+              <a href="/2019/05/17/bert/" rel="next" title="Bert">
+                <i class="fa fa-chevron-left"></i> Bert
               </a>
             
           </div>
@@ -348,10 +393,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/19/quickview/" rel="prev" title="quickview">
-                quickview <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
